@@ -12,25 +12,41 @@ struct ContentView : View {
     @State private var selection = 0
  
     var body: some View {
+        
         TabbedView(selection: $selection){
-            
-            Text("首页")
+
+            HomeView()
                 .font(.title)
-                .tabItemLabel(Image("first"))
+                .tabItemLabel(VStack {
+                    Image("first")
+                    Text("首页")
+                })
                 .tag(0)
+
             Text("事件")
                 .font(.title)
-                .tabItemLabel(Image("first"))
+                .tabItemLabel(VStack {
+                    Image("first")
+                    Text("事件")
+                })
                 .tag(1)
             Text("报告")
                 .font(.title)
-                .tabItemLabel(Image("first"))
+                .tabItemLabel(VStack {
+                    Image("first")
+                    Text("报告")
+                })
                 .tag(2)
             Text("我的")
                 .font(.title)
-                .tabItemLabel(Image("first"))
+                .tabItemLabel(VStack {
+                    Image("first")
+                    Text("我的")
+                })
                 .tag(3)
         }
+            
+
     }
 }
 
