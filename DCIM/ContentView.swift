@@ -13,14 +13,23 @@ struct ContentView : View {
  
     var body: some View {
         TabbedView(selection: $selection){
-            Text("First View")
+            
+            Text("首页")
                 .font(.title)
                 .tabItemLabel(Image("first"))
                 .tag(0)
-            Text("Second View")
+            Text("事件")
                 .font(.title)
-                .tabItemLabel(Image("second"))
+                .tabItemLabel(Image("first"))
                 .tag(1)
+            Text("报告")
+                .font(.title)
+                .tabItemLabel(Image("first"))
+                .tag(2)
+            Text("我的")
+                .font(.title)
+                .tabItemLabel(Image("first"))
+                .tag(3)
         }
     }
 }
