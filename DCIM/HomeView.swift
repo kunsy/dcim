@@ -15,7 +15,7 @@ struct HomeView : View {
     
     @State private var searchText = ""
     //var results = SearchResults(engineers: [Engineer](), equipments: [Equipment]())
-
+    @State var searchNotEmpty = false
     @State var searchManager = SearchManager()
     
     var body: some View {
@@ -29,10 +29,13 @@ struct HomeView : View {
                     Networking.search(query: self.searchText) { (res) in
                         switch res {
                         case .success(let res):
-                            print(res)
+                            //print(res)
                             self.searchManager.results = res
+                            self.searchNotEmpty = true
+                            print(self.searchManager.results)
                         case .failure(let err):
                             print(err)
+                            self.searchNotEmpty = false
                         }
                     }
                 }) { Text("Search") }
@@ -46,8 +49,9 @@ struct HomeView : View {
                     Text("事件记录").color(.orange)
                 }.font(.body).padding()
             }.frame(height: 40)
-            
-            //SearchResultsView(results: self.searchManager.results)
+            if searchNotEmpty {
+                SearchResultsView(results: self.searchManager.results)
+            }
             Spacer()
        }.navigationBarTitle(Text("DCOM"), displayMode: .inline)
     }
