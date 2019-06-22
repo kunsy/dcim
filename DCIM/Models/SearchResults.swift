@@ -10,8 +10,16 @@ import SwiftUI
 
 
 struct SearchResults: Codable {
+    
     var engineers: [Engineer]?
     var equipments: [Equipment]?
+}
+
+struct EngineersAPI: Codable {
+    var count: Int
+    var next: String
+    var previous: String?
+    var results: [Engineer]?
 }
 
 struct Equipment: Codable {

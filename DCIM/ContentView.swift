@@ -15,13 +15,15 @@ struct ContentView : View {
         
         TabbedView(selection: $selection){
 
-            HomeView()
-                .font(.title)
-                .tabItemLabel(VStack {
-                    Image("first")
-                    Text("首页")
-                })
-                .tag(0)
+            NavigationView {
+                HomeView()
+            } 
+            .font(.title)
+            .tabItemLabel(VStack {
+                Image("first")
+                Text("首页")
+            })
+            .tag(0)
 
             Text("事件")
                 .font(.title)
