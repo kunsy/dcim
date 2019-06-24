@@ -14,18 +14,10 @@ struct SupplierRow : View {
     var engineers: [Engineer]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack {
             Text(self.supplier)
             ForEach (self.engineers.identified(by: \.name)) { engineer in
-                VStack (alignment: .leading, spacing: 0) {
-                    HStack {
-                        Text(engineer.name)
-                        Spacer()
-                        Text("手机号：\(engineer.phone)")
-                        }.padding()
-                    Text("身份证/ID号：\(engineer.identity)")
-                }
-                    .font(.body)
+                EngineerRow(engineer: engineer)
             }.padding()
         }
 

@@ -11,29 +11,28 @@ import SwiftUI
 struct SearchResultsView : View {
     
     var results: SearchResults
- 
+    @State var hasEngineer = false
+    @State var hasEquipment = false
+    
     var body: some View {
         List {
-//            Section {
-//                if results.engineers?.count != 0 {
-//                    ForEach((self.results.engineers?.identified(by: \.name))!) { engineer in
-//                        Text("Engineer:\(engineer.name ?? "")")
-//                    }
-//                }
-//            }
-
             Section {
                 if results.equipments?.count != 0 {
                     ForEach((self.results.equipments?.identified(by: \.name))!) {equipment in
-                        Text("Equipment:\(equipment.location ?? "" )")
+                        EquipmentRow(equipment: equipment)
                     }
                 }
             }
-
-        }
-
-
-        
+//            Section {
+                
+//                if results.engineers?.count == 0 {
+//
+//                    ForEach((self.results.engineers?.identified(by: \.name))!) { engineer in
+//                        Text("Engineer:\(engineer.name )")
+//                    }
+//                }
+//            }
+            }//.frame(height: 600)
     }
 }
 

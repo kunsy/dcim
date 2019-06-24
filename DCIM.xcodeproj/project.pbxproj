@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F071E2622C09AAB00ED9195 /* EquipmentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F071E2522C09AAB00ED9195 /* EquipmentRow.swift */; };
 		5F0927E822B9F9C700CA26D3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0927E722B9F9C700CA26D3 /* HomeView.swift */; };
 		5F0927F122BA065500CA26D3 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0927F022BA065500CA26D3 /* SearchResults.swift */; };
 		5F0927F422BA773200CA26D3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0927F322BA773200CA26D3 /* Networking.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F071E2522C09AAB00ED9195 /* EquipmentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentRow.swift; sourceTree = "<group>"; };
 		5F0927E722B9F9C700CA26D3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5F0927F022BA065500CA26D3 /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		5F0927F322BA773200CA26D3 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
@@ -51,6 +53,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F071E2322C079D600ED9195 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5F071E2422C07A2B00ED9195 /* EngineerList */ = {
+			isa = PBXGroup;
+			children = (
+				5F55792D22BC809C00C79FDE /* EngineerListView.swift */,
+				5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */,
+				5F0927F722BA817900CA26D3 /* EngineerRow.swift */,
+				5F071E2522C09AAB00ED9195 /* EquipmentRow.swift */,
+			);
+			path = EngineerList;
+			sourceTree = "<group>";
+		};
 		5F0927ED22BA062800CA26D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,16 +107,14 @@
 		5FFDD87E22B91F1C00C2383A /* DCIM */ = {
 			isa = PBXGroup;
 			children = (
+				5F071E2422C07A2B00ED9195 /* EngineerList */,
+				5F071E2322C079D600ED9195 /* Search */,
 				5F0927F222BA771C00CA26D3 /* Networking */,
 				5F0927ED22BA062800CA26D3 /* Models */,
 				5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */,
 				5FFDD88122B91F1C00C2383A /* SceneDelegate.swift */,
 				5FFDD88322B91F1C00C2383A /* ContentView.swift */,
 				5F0927E722B9F9C700CA26D3 /* HomeView.swift */,
-				5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */,
-				5F55792D22BC809C00C79FDE /* EngineerListView.swift */,
-				5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */,
-				5F0927F722BA817900CA26D3 /* EngineerRow.swift */,
 				5FFDD88522B91F1D00C2383A /* Assets.xcassets */,
 				5FFDD88A22B91F1D00C2383A /* LaunchScreen.storyboard */,
 				5FFDD88D22B91F1D00C2383A /* Info.plist */,
@@ -187,6 +206,7 @@
 				5F0927F822BA817900CA26D3 /* EngineerRow.swift in Sources */,
 				5F0927E822B9F9C700CA26D3 /* HomeView.swift in Sources */,
 				5FFDD88222B91F1C00C2383A /* SceneDelegate.swift in Sources */,
+				5F071E2622C09AAB00ED9195 /* EquipmentRow.swift in Sources */,
 				5F0927F422BA773200CA26D3 /* Networking.swift in Sources */,
 				5F0FAD8722BCC1D9006BAAAB /* SupplierRow.swift in Sources */,
 				5F55792E22BC809C00C79FDE /* EngineerListView.swift in Sources */,

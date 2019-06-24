@@ -20,7 +20,7 @@ struct ContentView : View {
             } 
             .font(.title)
             .tabItemLabel(VStack {
-                Image("first")
+                Image("btn_home_normal")
                 Text("首页")
             })
             .tag(0)
@@ -28,21 +28,21 @@ struct ContentView : View {
             Text("事件")
                 .font(.title)
                 .tabItemLabel(VStack {
-                    Image("first")
+                    Image("btn_column_normal")
                     Text("事件")
                 })
                 .tag(1)
             Text("报告")
                 .font(.title)
                 .tabItemLabel(VStack {
-                    Image("first")
+                    Image("btn_live_normal")
                     Text("报告")
                 })
                 .tag(2)
             Text("我的")
                 .font(.title)
                 .tabItemLabel(VStack {
-                    Image("first")
+                    Image("btn_user_normal")
                     Text("我的")
                 })
                 .tag(3)

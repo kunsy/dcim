@@ -45,11 +45,11 @@ struct Equipment: Codable {
 struct Engineer: Codable {
     var supplier: Int
     var name: String
-    var phone: String
-    var identity: String
-    var is_certify: Bool
-    var is_cv: Bool
-    var is_commit: Bool
-    var is_train: Bool
+    var phone: String?
+    var identity: String?
+    var is_certify: Bool?
+    var is_cv: Bool?
+    var is_commit: Bool?
+    var is_train: Bool?
     var add_time: String
 }
