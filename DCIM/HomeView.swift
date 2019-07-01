@@ -20,11 +20,9 @@ struct HomeView : View {
     var body: some View {
  
         VStack {
-
-            TextField($searchText, placeholder: Text("Search"), onEditingChanged: { (isChange) in
+            TextField($searchText, placeholder: Text("search"), onEditingChanged: { (Bool) in
                 self.searchManager.search(query: self.searchText)
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
-            
             //ScrollView {
             HStack(alignment: .center, spacing: 40) {
                 Text("设备信息")
