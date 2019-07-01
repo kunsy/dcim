@@ -86,14 +86,15 @@ class SearchManager: BindableObject {
     }
     
     func search(query: String) {
-        
+        self.engineers = []
+        self.equipments = []
         print("nice work")
         let session = URLSession.shared
-        print(query)
-//        let urlString = "http://18.179.121.218:8000/search/?query=\(query)"
-//        guard let url = urlString.addingPercentEncoding(withAllowedCharacters: <#T##CharacterSet#>) else { return }
-        guard let url = URL(string: "http://18.179.121.218:8000/search/?query=\(query))") else { return }
-        print(url)
+//        print(query)
+        let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+//        print(q!)
+        guard let url = URL(string: "http://18.179.121.218:8000/search/?query=\(q!))") else { return }
+//        print(url)
         let task = session.dataTask(with: url) { data, response, error in
             //check error
             if error != nil || data == nil {
