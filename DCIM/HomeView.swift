@@ -14,43 +14,37 @@ import Combine
 struct HomeView : View {
     
     @State private var searchText = ""
-    @State var searchNotEmpty = false
-    @State var searchManager = SearchManager()
+
+    @ObjectBinding var searchManager = SearchManager()
     
     var body: some View {
  
         VStack {
 
             TextField($searchText, placeholder: Text("Search"), onEditingChanged: { (isChange) in
-                Networking.search(query: self.searchText) { (res) in
-                    switch res {
-                    case .success(let res):
-                        //print(res)
-                        self.searchManager.results = res
-                        self.searchNotEmpty = true
-                        print(self.searchManager.results)
-                    case .failure(let err):
-                        print(err)
-                        self.searchNotEmpty = false
-                    }
-                }
-            }).textFieldStyle(.roundedBorder).padding()
-            //            ScrollView {
+                self.searchManager.search(query: self.searchText)
+            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
+            
+            //ScrollView {
             HStack(alignment: .center, spacing: 40) {
-                Text("设备信息").color(.orange)
+                Text("设备信息")
+                    .foregroundColor(.orange)
+                   
+                
                 NavigationButton(destination: EngineerListView()) {
                     Text("工程师").color(.orange)
                 }
                 Text("事件记录").color(.orange)
                 }.font(.body)
-            //            }.frame(height: 40)
-            if searchNotEmpty {
-                SearchResultsView(results: self.searchManager.results)
-            }
-            if !searchNotEmpty {
+
+            SearchResultsView(searchManager: self.searchManager)
+
+            if !searchManager.resultsIsNotEmpty {
                 Spacer()
             }
+            
     }.navigationBarTitle(Text("DCOM"), displayMode: .inline)
+        .accentColor(Color.blue)
         
 }
 }

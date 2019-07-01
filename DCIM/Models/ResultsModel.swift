@@ -22,7 +22,7 @@ struct EngineersAPI: Codable {
     var results: [Engineer]?
 }
 
-struct Equipment: Codable {
+struct Equipment: Codable, Identifiable {
     var id: Int
     var supplier: Int?
     var supporter: String?
@@ -42,7 +42,8 @@ struct Equipment: Codable {
     var add_time: String?
 }
 
-struct Engineer: Codable {
+struct Engineer: Codable, Identifiable {
+    var id: Int?
     var supplier: Int
     var name: String
     var phone: String?
@@ -52,4 +53,8 @@ struct Engineer: Codable {
     var is_commit: Bool?
     var is_train: Bool?
     var add_time: String
+    
+    private enum CodingKeys : String, CodingKey {
+        case supplier, name, phone, identity, is_certify, is_cv, is_commit, is_train, add_time
+    }
 }

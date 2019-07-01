@@ -10,29 +10,24 @@ import SwiftUI
 
 struct SearchResultsView : View {
     
-    var results: SearchResults
-    @State var hasEngineer = false
-    @State var hasEquipment = false
+    @ObjectBinding var searchManager: SearchManager
     
     var body: some View {
         List {
             Section {
-                if results.equipments?.count != 0 {
-                    ForEach((self.results.equipments?.identified(by: \.name))!) {equipment in
-                        EquipmentRow(equipment: equipment)
-                    }
+                ForEach(self.searchManager.equipments) {equipment in
+                    EquipmentRow(equipment: equipment)
                 }
             }
-//            Section {
-                
-//                if results.engineers?.count == 0 {
-//
-//                    ForEach((self.results.engineers?.identified(by: \.name))!) { engineer in
-//                        Text("Engineer:\(engineer.name )")
-//                    }
-//                }
-//            }
-            }//.frame(height: 600)
+
+            Section {
+
+                ForEach(self.searchManager.engineers) { engineer in
+                    EngineerRow(engineer: engineer)
+                }
+
+            }
+        }
     }
 }
 
