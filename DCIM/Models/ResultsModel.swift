@@ -22,6 +22,13 @@ struct EngineersAPI: Codable {
     var results: [Engineer]?
 }
 
+struct EquipmentsAPI: Codable {
+    var count: Int
+    var next: String
+    var previous: String?
+    var results: [Equipment]?
+}
+
 struct Equipment: Codable, Identifiable {
     var id: Int
     var supplier: Int?

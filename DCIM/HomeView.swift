@@ -16,7 +16,7 @@ struct HomeView : View {
     @State private var searchText = ""
 
     @ObjectBinding var searchManager = SearchManager()
-    
+    @ObjectBinding var networkManager = NetworkManager()
     var body: some View {
  
         VStack {
@@ -24,16 +24,16 @@ struct HomeView : View {
                 self.searchManager.search(query: self.searchText)
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             //ScrollView {
-            HStack(alignment: .center, spacing: 40) {
-                Text("设备信息")
-                    .foregroundColor(.orange)
-                   
+            HStack(spacing: 40) {
+                NavigationButton(destination: EquipmentListView()) {
+                    Text("设备信息").foregroundColor(.orange)
+                }
                 
                 NavigationButton(destination: EngineerListView()) {
                     Text("工程师").color(.orange)
                 }
                 Text("事件记录").color(.orange)
-                }.font(.body)
+            }.font(.body)
 
             SearchResultsView(searchManager: self.searchManager)
 

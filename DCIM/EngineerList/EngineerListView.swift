@@ -13,7 +13,7 @@ import Combine
 
 struct EngineerListView : View {
     
-    @State var networkManager = NetworkManager()
+    @ObjectBinding var networkManager = NetworkManager()
     var suppliers: [String: [Engineer]] {
         .init(
             grouping: networkManager.engineers,

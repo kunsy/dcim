@@ -19,11 +19,50 @@ class NetworkManager: BindableObject {
             didChange.send(self)
         }
     }
-    
+    var equipments = [Equipment]() {
+        didSet {
+            didChange.send(self)
+        }
+    }
     init() {
+        getEngineers()
+        getEquipments()
+    }
+    func getEquipments() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218:8000/engineers")
-        
+        let url = URL(string: "http://18.179.121.218:8000/equipments/")
+        let task = session.dataTask(with: url!) { data, response, error in
+            //check error
+            if error != nil || data == nil {
+                print("Client error!")
+                return
+            }
+            //check server error
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(EquipmentsAPI.self, from: data)
+                DispatchQueue.main.async {
+                    self.equipments = results.results!
+                }
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }
+        task.resume()
+    }
+    func getEngineers() {
+        let session = URLSession.shared
+        let url = URL(string: "http://18.179.121.218:8000/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -53,7 +92,6 @@ class NetworkManager: BindableObject {
         }
         task.resume()
     }
-    
 }
 
 class SearchManager: BindableObject {
@@ -134,76 +172,3 @@ class SearchManager: BindableObject {
 }
 
 
-//class Networking {
-//   static func search(query: String, completion: @escaping (Result<SearchResults, Error>) -> ()) {
-//
-//        print("nice work")
-//        let session = URLSession.shared
-//        guard let url = URL(string: "http://18.179.121.218:8000/search/?query=\(query)") else { return }
-//        let task = session.dataTask(with: url) { data, response, error in
-//            //check error
-//            if error != nil || data == nil {
-//                completion(.failure(error!))
-//                //print("Client error!")
-//                return
-//            }
-//            //check server error
-//            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-//                print("Server error!")
-//                return
-//            }
-//            guard let mime = response.mimeType, mime == "application/json" else {
-//                print("Wrong MIME type!")
-//                return
-//            }
-//            guard let data = data else { return }
-//
-//            do {
-//                let results = try JSONDecoder().decode(SearchResults.self, from: data)
-//                DispatchQueue.main.async {
-//                    completion(.success(results))
-//                }
-//            } catch let jsonErr {
-//                completion(.failure(jsonErr))
-//            }
-//        }
-//        task.resume()
-//    }
-//
-//    static func getEngineers(completion: @escaping (Result<[Engineer], Error>) -> ()) {
-//
-//        print("Engineers getting")
-//        let session = URLSession.shared
-//        let url = URL(string: "http://18.179.121.218:8000/engineers")
-//
-//        let task = session.dataTask(with: url!) { data, response, error in
-//            //check error
-//            if error != nil || data == nil {
-//                completion(.failure(error!))
-//                //print("Client error!")
-//                return
-//            }
-//            //check server error
-//            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-//                print("Server error!")
-//                return
-//            }
-//            guard let mime = response.mimeType, mime == "application/json" else {
-//                print("Wrong MIME type!")
-//                return
-//            }
-//            guard let data = data else { return }
-//
-//                do {
-//                    let results = try JSONDecoder().decode([Engineer].self, from: data)
-//                    DispatchQueue.main.async {
-//                        completion(.success(results))
-//                    }
-//                } catch let jsonErr {
-//                    completion(.failure(jsonErr))
-//                }
-//
-//        }
-//        task.resume()
-//    }
-//}
