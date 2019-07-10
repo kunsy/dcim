@@ -14,18 +14,27 @@ import Combine
 struct HomeView : View {
     
     @State private var searchText = ""
-
+    @State private var starting = false
     @ObjectBinding var searchManager = SearchManager()
     @ObjectBinding var networkManager = NetworkManager()
     var body: some View {
  
         VStack {
+            
+            if !starting {
+                Image("abc_log")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .animation(.basic())
+            }
+            
             TextField($searchText, placeholder: Text("search"), onEditingChanged: { (Bool) in
+                self.starting = true
                 self.searchManager.search(query: self.searchText)
             })
                 .textFieldStyle(.roundedBorder)
-                //.padding(.top)
-                //.padding([.vertical])201
+                .padding()
+ 
             //ScrollView {
             HStack(spacing: 40) {
                 NavigationButton(destination: EquipmentListView()) {

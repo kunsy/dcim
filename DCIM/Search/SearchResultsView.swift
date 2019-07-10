@@ -14,12 +14,12 @@ struct SearchResultsView : View {
     
     var body: some View {
         List {
+            
             Section {
                 ForEach(self.searchManager.equipments) {equipment in
                     EquipmentRow(equipment: equipment)
                 }
             }
-
             Section {
 
                 ForEach(self.searchManager.engineers) { engineer in
