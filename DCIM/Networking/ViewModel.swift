@@ -24,13 +24,19 @@ class NetworkManager: BindableObject {
             didChange.send(self)
         }
     }
+    var events = [Event]() {
+        didSet {
+            didChange.send(self)
+        }
+    }
     init() {
         getEngineers()
         getEquipments()
+        getEvents()
     }
     func getEquipments() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218:8000/equipments/")
+        let url = URL(string: "http://18.179.121.218/equipments/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -62,7 +68,7 @@ class NetworkManager: BindableObject {
     }
     func getEngineers() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218:8000/engineers/")
+        let url = URL(string: "http://18.179.121.218/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -84,6 +90,39 @@ class NetworkManager: BindableObject {
                 let results = try JSONDecoder().decode(EngineersAPI.self, from: data)
                 DispatchQueue.main.async {
                     self.engineers = results.results!
+                }
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }
+        task.resume()
+    }
+    
+    func getEvents() {
+        let session = URLSession.shared
+        let url = URL(string: "http://18.179.121.218/events/")
+        let task = session.dataTask(with: url!) { data, response, error in
+            //check error
+            if error != nil || data == nil {
+                print("Client error!")
+                return
+            }
+            //check server error
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            guard let data = data else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(EventsAPI.self, from: data)
+                DispatchQueue.main.async {
+                    self.events = results.results!
                 }
                 
             } catch let jsonErr {
@@ -122,6 +161,11 @@ class SearchManager: BindableObject {
             didChange.send(self)
         }
     }
+    var events = [Event]() {
+        didSet {
+            didChange.send(self)
+        }
+    }
     
     func search(query: String) {
         self.engineers = []
@@ -131,7 +175,7 @@ class SearchManager: BindableObject {
 //        print(query)
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 //        print(q!)
-        guard let url = URL(string: "http://18.179.121.218:8000/search/?query=\(q!))") else { return }
+        guard let url = URL(string: "http://18.179.121.218/search/?query=\(q!))") else { return }
 //        print(url)
         let task = session.dataTask(with: url) { data, response, error in
             //check error

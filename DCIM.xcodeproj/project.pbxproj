@@ -15,6 +15,8 @@
 		5F0FAD8722BCC1D9006BAAAB /* SupplierRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */; };
 		5F0FAD8922BCCD09006BAAAB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */; };
 		5F1A165922CC92F00086BCC8 /* EquipmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A165822CC92F00086BCC8 /* EquipmentListView.swift */; };
+		5F23E7B922D57AFF0014F761 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23E7B822D57AFF0014F761 /* EventListView.swift */; };
+		5F23E7BB22D57B8E0014F761 /* EventRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23E7BA22D57B8E0014F761 /* EventRow.swift */; };
 		5F55792E22BC809C00C79FDE /* EngineerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55792D22BC809C00C79FDE /* EngineerListView.swift */; };
 		5FFDD88022B91F1C00C2383A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */; };
 		5FFDD88222B91F1C00C2383A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFDD88122B91F1C00C2383A /* SceneDelegate.swift */; };
@@ -33,6 +35,8 @@
 		5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierRow.swift; sourceTree = "<group>"; };
 		5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		5F1A165822CC92F00086BCC8 /* EquipmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListView.swift; sourceTree = "<group>"; };
+		5F23E7B822D57AFF0014F761 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		5F23E7BA22D57B8E0014F761 /* EventRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRow.swift; sourceTree = "<group>"; };
 		5F55792D22BC809C00C79FDE /* EngineerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerListView.swift; sourceTree = "<group>"; };
 		5FFDD87C22B91F1C00C2383A /* DCIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,15 @@
 			path = EquipmentList;
 			sourceTree = "<group>";
 		};
+		5F23E7B722D577DF0014F761 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				5F23E7B822D57AFF0014F761 /* EventListView.swift */,
+				5F23E7BA22D57B8E0014F761 /* EventRow.swift */,
+			);
+			path = EventList;
+			sourceTree = "<group>";
+		};
 		5FFDD87322B91F1B00C2383A = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +130,11 @@
 		5FFDD87E22B91F1C00C2383A /* DCIM */ = {
 			isa = PBXGroup;
 			children = (
+				5F23E7B722D577DF0014F761 /* EventList */,
+				5F071E2422C07A2B00ED9195 /* EngineerList */,
 				5F1A165A22CC93070086BCC8 /* EquipmentList */,
 				5F0927F222BA771C00CA26D3 /* Networking */,
 				5F0927ED22BA062800CA26D3 /* Models */,
-				5F071E2422C07A2B00ED9195 /* EngineerList */,
 				5F071E2322C079D600ED9195 /* Search */,
 				5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */,
 				5FFDD88122B91F1C00C2383A /* SceneDelegate.swift */,
@@ -221,8 +235,10 @@
 				5F0927F422BA773200CA26D3 /* ViewModel.swift in Sources */,
 				5F0FAD8722BCC1D9006BAAAB /* SupplierRow.swift in Sources */,
 				5F55792E22BC809C00C79FDE /* EngineerListView.swift in Sources */,
+				5F23E7B922D57AFF0014F761 /* EventListView.swift in Sources */,
 				5F0FAD8922BCCD09006BAAAB /* SearchResultsView.swift in Sources */,
 				5F1A165922CC92F00086BCC8 /* EquipmentListView.swift in Sources */,
+				5F23E7BB22D57B8E0014F761 /* EventRow.swift in Sources */,
 				5F0927F122BA065500CA26D3 /* ResultsModel.swift in Sources */,
 				5FFDD88422B91F1C00C2383A /* ContentView.swift in Sources */,
 			);

@@ -32,7 +32,11 @@ struct HomeView : View {
                 NavigationButton(destination: EngineerListView()) {
                     Text("工程师").color(.orange)
                 }
-                Text("事件记录").color(.orange)
+                
+                NavigationButton(destination: EventListView()) {
+                    Text("事件记录").color(.orange)
+                }
+                
             }.font(.body)
 
             SearchResultsView(searchManager: self.searchManager)

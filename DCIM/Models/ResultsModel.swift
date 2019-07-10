@@ -15,18 +15,25 @@ struct SearchResults: Codable {
     var equipments: [Equipment]?
 }
 
+struct EquipmentsAPI: Codable {
+    var count: Int
+    var next: String?
+    var previous: String?
+    var results: [Equipment]?
+}
+
 struct EngineersAPI: Codable {
     var count: Int
-    var next: String
+    var next: String?
     var previous: String?
     var results: [Engineer]?
 }
 
-struct EquipmentsAPI: Codable {
+struct EventsAPI: Codable {
     var count: Int
-    var next: String
+    var next: String?
     var previous: String?
-    var results: [Equipment]?
+    var results: [Event]?
 }
 
 struct Equipment: Codable, Identifiable {
@@ -63,5 +70,23 @@ struct Engineer: Codable, Identifiable {
     
     private enum CodingKeys : String, CodingKey {
         case supplier, name, phone, identity, is_certify, is_cv, is_commit, is_train, add_time
+    }
+}
+
+struct Event: Codable, Identifiable {
+    var id: Int?
+    var equipment: Int?
+    var date: String?
+    var abstract: String?
+    var dispose: String?
+    var confirmTime: String?
+    var status: String?
+    var causes: String?
+    var remark: String?
+    var add_time: String?
+    
+    private enum CodingKeys : String, CodingKey {
+        case confirmTime = "confirm_time"
+        case equipment, date, abstract, dispose, status, causes, remark, add_time
     }
 }
