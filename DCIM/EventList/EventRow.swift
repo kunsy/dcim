@@ -11,8 +11,8 @@ import SwiftUI
 struct EventRow : View {
     var event: Event
     var body: some View {
-        VStack (alignment: .leading, spacing: 0) {
-            Text("\(event.abstract!)").font(.title)
+        Form  {
+            Text("\(event.abstract!)").font(.subheadline).color(.orange)
             HStack {
                 Text("发生日期：")
                 Spacer()
@@ -43,7 +43,7 @@ struct EventRow : View {
                 Spacer()
                 Text("\(event.remark ?? "" )")
                 }.font(.body).lineLimit(nil)
-        }
+            }.frame(height: 700)
     }
 }
 

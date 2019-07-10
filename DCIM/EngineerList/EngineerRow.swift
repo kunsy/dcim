@@ -13,7 +13,7 @@ struct EngineerRow : View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            Text("\(engineer.name)").font(.title)
+            Text("\(engineer.name)").font(.subheadline).color(.orange)
             HStack {
                 Text("手机号：")
                 Spacer()

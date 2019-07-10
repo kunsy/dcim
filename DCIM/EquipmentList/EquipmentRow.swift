@@ -12,7 +12,7 @@ struct EquipmentRow : View {
     var equipment: Equipment
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            Text("\(equipment.name!)").font(.title)
+            Text("\(equipment.name!)").font(.subheadline).color(.orange)
             HStack {
                 Text("序列号：")
                 Spacer()
