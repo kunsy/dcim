@@ -25,21 +25,29 @@ struct ContentView : View {
             })
             .tag(0)
 
-            Text("事件")
+            NavigationView {
+                EventView()
+            }
                 .font(.title)
                 .tabItemLabel(VStack {
                     Image("btn_column_normal")
                     Text("事件")
                 })
                 .tag(1)
-            Text("报告")
+            
+            NavigationView {
+                ReportView()
+            }
                 .font(.title)
                 .tabItemLabel(VStack {
                     Image("btn_live_normal")
                     Text("报告")
                 })
                 .tag(2)
-            Text("我的")
+            
+            NavigationView {
+                MoiView()
+            }
                 .font(.title)
                 .tabItemLabel(VStack {
                     Image("btn_user_normal")
