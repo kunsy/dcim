@@ -22,7 +22,10 @@ struct HomeView : View {
         VStack {
             TextField($searchText, placeholder: Text("search"), onEditingChanged: { (Bool) in
                 self.searchManager.search(query: self.searchText)
-            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
+            })
+                .textFieldStyle(.roundedBorder)
+                //.padding(.top)
+                //.padding([.vertical])201
             //ScrollView {
             HStack(spacing: 40) {
                 NavigationButton(destination: EquipmentListView()) {
