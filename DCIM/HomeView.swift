@@ -10,18 +10,19 @@ import SwiftUI
 import UIKit
 import Combine
 
+import AVFoundation //for scan QR code
 
 struct HomeView : View {
     
     @State private var searchText = ""
-    @State private var starting = false
+    @State private var showImage = true
     @ObjectBinding var searchManager = SearchManager()
     @ObjectBinding var networkManager = NetworkManager()
     var body: some View {
  
         VStack {
             
-            if !starting {
+            if showImage {
                 Image("abc_log")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -29,7 +30,7 @@ struct HomeView : View {
             }
             
             TextField($searchText, placeholder: Text("search"), onEditingChanged: { (Bool) in
-                self.starting = true
+                self.showImage = false
                 self.searchManager.search(query: self.searchText)
             })
                 .textFieldStyle(.roundedBorder)
