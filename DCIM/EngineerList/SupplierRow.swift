@@ -16,6 +16,8 @@ struct SupplierRow : View {
     var body: some View {
         VStack {
             Text(self.supplier)
+                .font(.headline)
+//                .alignmentGuide(.leading)
             ForEach (self.engineers.identified(by: \.name)) { engineer in
                 EngineerRow(engineer: engineer)
             }.padding()

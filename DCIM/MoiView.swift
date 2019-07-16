@@ -19,19 +19,19 @@ struct MoiView : View {
             List {
                 
                 Section (header: Text("个人信息")){
-                    NavigationButton (destination: Text("基础信息API接口")) {
+                    NavigationLink (destination: Text("基础信息API接口")) {
                         Text("基础信息").font(.body)
                     }
-                    NavigationButton (destination: Text("事件单API接口")) {
+                    NavigationLink (destination: Text("事件单API接口")) {
                         Text("已处理事件").font(.body)
                     }
                     }.foregroundColor(.orange)
                 Spacer()
                 Section (header: Text("工作内容")){
-                    NavigationButton (destination: Text("事件单API接口")) {
+                    NavigationLink (destination: Text("事件单API接口")) {
                         Text("待处理事件").font(.body)
                     }
-                    NavigationButton (destination: Text("事件单API接口")) {
+                    NavigationLink (destination: Text("事件单API接口")) {
                         Text("值班交接").font(.body)
                     }
                     }.foregroundColor(.orange)

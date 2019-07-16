@@ -29,7 +29,7 @@ struct EngineerRow : View {
             HStack {
                 Text("供应商：")
                 Spacer()
-                Text("\(engineer.supplier)")
+                Text("\(engineer.supplierName!)")
                 }.font(.body)
         }.font(.body)
     }

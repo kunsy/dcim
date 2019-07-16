@@ -55,9 +55,9 @@ class NetworkManager: BindableObject {
             guard let data = data else { return }
             
             do {
-                let results = try JSONDecoder().decode(EquipmentsAPI.self, from: data)
+                let results = try JSONDecoder().decode([Equipment].self, from: data)
                 DispatchQueue.main.async {
-                    self.equipments = results.results!
+                    self.equipments = results
                 }
                 
             } catch let jsonErr {
@@ -87,9 +87,9 @@ class NetworkManager: BindableObject {
             guard let data = data else { return }
             
             do {
-                let results = try JSONDecoder().decode(EngineersAPI.self, from: data)
+                let results = try JSONDecoder().decode([Engineer].self, from: data)
                 DispatchQueue.main.async {
-                    self.engineers = results.results!
+                    self.engineers = results
                 }
                 
             } catch let jsonErr {
@@ -120,9 +120,9 @@ class NetworkManager: BindableObject {
             guard let data = data else { return }
             
             do {
-                let results = try JSONDecoder().decode(EventsAPI.self, from: data)
+                let results = try JSONDecoder().decode([Event].self, from: data)
                 DispatchQueue.main.async {
-                    self.events = results.results!
+                    self.events = results
                 }
                 
             } catch let jsonErr {

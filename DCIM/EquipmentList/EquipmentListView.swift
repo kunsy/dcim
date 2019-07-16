@@ -10,13 +10,18 @@ import SwiftUI
 
 struct EquipmentListView : View {
     @ObjectBinding var networkManager = NetworkManager()
+    @State private var searchText = ""
     var body: some View {
-        List {
-            ForEach (self.networkManager.equipments) { equipment in
-                EquipmentRow(equipment: equipment)
-            }
-            
+        VStack {
+            TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
+                
+            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
+            List {
+                ForEach (self.networkManager.equipments) { equipment in
+                    EquipmentRow(equipment: equipment)
+                }
             }.navigationBarTitle(Text("计算机设备"))
+        }
     }
 }
 

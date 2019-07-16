@@ -14,24 +14,26 @@ import Combine
 struct EngineerListView : View {
     
     @ObjectBinding var networkManager = NetworkManager()
+    @State private var searchText = ""
     var suppliers: [String: [Engineer]] {
         .init(
             grouping: networkManager.engineers,
-            by: { String($0.supplier) }
+            by: { String($0.supplierName!) }
         )
     }
     var body: some View {
-//        List (networkManager.engineers.identified(by: \.name)) { engineer in
-//            EngineerRow(engineer: engineer)
-//        }
-        List {
-            ForEach (suppliers.keys.sorted().identified(by: \.self)) { key in
+        VStack {
+            TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
                 
-                SupplierRow(supplier: key, engineers: self.suppliers[key]!)
+            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             
-            }
-    
-        }.navigationBarTitle(Text("工程师"))
+            List {
+                ForEach (suppliers.keys.sorted().identified(by: \.self)) { key in
+                    SupplierRow(supplier: key, engineers: self.suppliers[key]!)
+                }
+            }.navigationBarTitle(Text("工程师"))
+        }
+
     }
 }
 

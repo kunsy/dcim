@@ -10,12 +10,20 @@ import SwiftUI
 
 struct EventListView : View {
     @ObjectBinding var networkManager = NetworkManager()
+    @State private var searchText = ""
     var body: some View {
-        List {
-            ForEach (self.networkManager.events) { event in
-                EventRow(event: event)
-            }
-        }.navigationBarTitle(Text("事件记录"))
+        VStack {
+            TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
+                
+            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
+            
+            List {
+                ForEach (self.networkManager.events) { event in
+                    EventRow(event: event)
+                }
+            }.navigationBarTitle(Text("事件记录"))
+        }
+
     }
 }
 

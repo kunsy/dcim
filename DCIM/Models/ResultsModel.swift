@@ -38,10 +38,12 @@ struct EventsAPI: Codable {
 
 struct Equipment: Codable, Identifiable {
     var id: Int
+    var supplierName: String?
     var supplier: Int?
     var supporter: String?
     var support_time: String?
     var contract: String?
+    var categoryName: String?
     var category: Int?
     var category_sub: String?
     var name: String?
@@ -59,6 +61,7 @@ struct Equipment: Codable, Identifiable {
 struct Engineer: Codable, Identifiable {
     var id: Int?
     var supplier: Int
+    var supplierName: String?
     var name: String
     var phone: String?
     var identity: String?
@@ -69,12 +72,14 @@ struct Engineer: Codable, Identifiable {
     var add_time: String
     
     private enum CodingKeys : String, CodingKey {
-        case supplier, name, phone, identity, is_certify, is_cv, is_commit, is_train, add_time
+        case supplier, supplierName, name, phone, identity, is_certify, is_cv, is_commit, is_train, add_time
     }
 }
 
 struct Event: Codable, Identifiable {
     var id: Int?
+    var equipmentName: String?
+    var equipmentSn: String?
     var equipment: Int?
     var date: String?
     var abstract: String?
@@ -87,6 +92,6 @@ struct Event: Codable, Identifiable {
     
     private enum CodingKeys : String, CodingKey {
         case confirmTime = "confirm_time"
-        case equipment, date, abstract, dispose, status, causes, remark, add_time
+        case equipment, equipmentName, equipmentSn, date, abstract, dispose, status, causes, remark, add_time
     }
 }

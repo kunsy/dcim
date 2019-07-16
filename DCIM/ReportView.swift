@@ -12,19 +12,19 @@ struct ReportView : View {
     var body: some View {
         List {
             Section (header: Text("故障记录")){
-                NavigationButton (destination: Text("事件单API接口")) {
+                NavigationLink (destination: Text("事件单API接口")) {
                     Text("值班事件").font(.body)
                 }
-                NavigationButton (destination: Text("事件单API接口")) {
+                NavigationLink (destination: Text("事件单API接口")) {
                     Text("遗留事件").font(.body)
                 }
                 }.foregroundColor(.orange)
             Spacer()
             Section (header: Text("问题报告")){
-                NavigationButton (destination: Text("事件单API接口")) {
+                NavigationLink (destination: Text("事件单API接口")) {
                     Text("重大事件").font(.body)
                 }
-                NavigationButton (destination: Text("事件单API接口")) {
+                NavigationLink (destination: Text("事件单API接口")) {
                     Text("宕机事件").font(.body)
                 }
                 }.foregroundColor(.orange)

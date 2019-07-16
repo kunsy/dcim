@@ -22,15 +22,14 @@ struct HomeView : View {
  
         VStack {
             
-            if showImage {
-                Image("abc_log")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .animation(.basic())
-            }
             
-            TextField($searchText, placeholder: Text("search"), onEditingChanged: { (Bool) in
-                self.showImage = false
+            Image("abc_log")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .animation(.fluidSpring())
+        
+            TextField($searchText, placeholder: Text("sn"), onCommit: {
+//                self.showImage = false
                 self.searchManager.search(query: self.searchText)
             })
                 .textFieldStyle(.roundedBorder)
@@ -38,15 +37,15 @@ struct HomeView : View {
  
             //ScrollView {
             HStack(spacing: 40) {
-                NavigationButton(destination: EquipmentListView()) {
+                NavigationLink(destination: EquipmentListView()) {
                     Text("设备信息").foregroundColor(.orange)
                 }
                 
-                NavigationButton(destination: EngineerListView()) {
+                NavigationLink(destination: EngineerListView()) {
                     Text("工程师").color(.orange)
                 }
                 
-                NavigationButton(destination: EventListView()) {
+                NavigationLink(destination: EventListView()) {
                     Text("事件记录").color(.orange)
                 }
                 
