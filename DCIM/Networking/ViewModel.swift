@@ -29,10 +29,28 @@ class NetworkManager: BindableObject {
             didChange.send(self)
         }
     }
+    var searchEngineerResults = [Engineer]() {
+        didSet {
+            didChange.send(self)
+        }
+    }
+
     init() {
         getEngineers()
         getEquipments()
         getEvents()
+    }
+    func search(search text: String, in target: String) {
+        if target == "engineers" {
+            guard !text.isEmpty else {
+                searchEngineerResults = engineers
+                return
+            }
+            self.searchEngineerResults = self.engineers.filter({ engineer -> Bool in
+                
+                return engineer.name.contains(text)
+            })
+        }
     }
     func getEquipments() {
         let session = URLSession.shared

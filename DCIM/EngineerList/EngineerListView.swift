@@ -24,7 +24,7 @@ struct EngineerListView : View {
     var body: some View {
         VStack {
             TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
-                
+                self.networkManager.search(search: self.searchText, in: "engineers")
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             
             List {

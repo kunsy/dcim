@@ -23,17 +23,23 @@ struct HomeView : View {
         VStack {
             
             
-            Image("abc_log")
+            Image("abc")
                 .resizable()
+                .clipShape(Circle())
                 .aspectRatio(contentMode: .fit)
                 .animation(.fluidSpring())
-        
-            TextField($searchText, placeholder: Text("sn"), onCommit: {
-//                self.showImage = false
-                self.searchManager.search(query: self.searchText)
-            })
-                .textFieldStyle(.roundedBorder)
-                .padding()
+            HStack {
+                TextField($searchText, placeholder: Text("sn"), onCommit: {
+                    //                self.showImage = false
+                    self.searchManager.search(query: self.searchText)
+                })
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                Image(systemName: "viewfinder.circle").tapAction {
+                    
+                }.padding(.trailing)
+            }
+
  
             //ScrollView {
             HStack(spacing: 40) {
