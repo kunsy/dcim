@@ -21,7 +21,12 @@ struct EventListView : View {
                 ForEach (self.networkManager.events) { event in
                     EventRow(event: event)
                 }
-            }.navigationBarTitle(Text("事件记录"))
+            }
+                .navigationBarTitle(Text("事件记录"))
+                .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
+                    print("Attempt to save events")
+                    self.networkManager.saveEvents()
+                })
         }
 
     }

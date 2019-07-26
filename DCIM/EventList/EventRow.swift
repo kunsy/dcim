@@ -12,7 +12,7 @@ struct EventRow : View {
     var event: Event
     var body: some View {
         Form  {
-            Text("\(event.abstract!)").font(.subheadline).color(.orange)
+            Text("\(event.abstract!)").font(.subheadline).foregroundColor(.orange)
             HStack {
                 Text("发生日期：")
                 Spacer()

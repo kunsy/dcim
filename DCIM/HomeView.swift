@@ -48,11 +48,11 @@ struct HomeView : View {
                 }
                 
                 NavigationLink(destination: EngineerListView()) {
-                    Text("工程师").color(.orange)
+                    Text("工程师").foregroundColor(.orange)
                 }
                 
                 NavigationLink(destination: EventListView()) {
-                    Text("事件记录").color(.orange)
+                    Text("事件记录").foregroundColor(.orange)
                 }
                 
             }.font(.body)

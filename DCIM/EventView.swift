@@ -29,7 +29,7 @@ struct EventView : View {
                 }
             }.foregroundColor(.orange)
             
-        }.navigationBarTitle(Text("事件处理").color(.orange), displayMode: .inline)
+        }.navigationBarTitle(Text("事件处理").foregroundColor(.orange), displayMode: .inline)
        
     }
 }

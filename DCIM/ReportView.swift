@@ -28,7 +28,7 @@ struct ReportView : View {
                     Text("宕机事件").font(.body)
                 }
                 }.foregroundColor(.orange)
-            }.navigationBarTitle(Text("报告").color(.orange), displayMode: .inline)
+        }.navigationBarTitle(Text("报告").foregroundColor(.orange), displayMode: .inline)
     }
 }
 

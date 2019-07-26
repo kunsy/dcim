@@ -12,34 +12,45 @@ import Combine
 
 
 class NetworkManager: BindableObject {
-    var didChange = PassthroughSubject<NetworkManager, Never>()
+    
+    var willChange = PassthroughSubject<NetworkManager, Never>()
     
     var engineers = [Engineer]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var equipments = [Equipment]() {
-        didSet {
-            didChange.send(self)
+        
+        willSet {
+            willChange.send(self)
         }
     }
     var events = [Event]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var searchEngineerResults = [Engineer]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
 
     init() {
+        saveEvents()
+        saveEngineers()
+        saveEquipments()
         getEngineers()
         getEquipments()
         getEvents()
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
     func search(search text: String, in target: String) {
         if target == "engineers" {
             guard !text.isEmpty else {
@@ -52,7 +63,7 @@ class NetworkManager: BindableObject {
             })
         }
     }
-    func getEquipments() {
+    func saveEquipments() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/equipments/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -72,19 +83,32 @@ class NetworkManager: BindableObject {
             }
             guard let data = data else { return }
             
+            let filename = "equipments.json"
+            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
             do {
                 let results = try JSONDecoder().decode([Equipment].self, from: data)
-                DispatchQueue.main.async {
-                    self.equipments = results
-                }
                 
+                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+                try data.write(to: fullPath)
             } catch let jsonErr {
                 print(jsonErr)
             }
         }
         task.resume()
     }
-    func getEngineers() {
+    func getEquipments() {
+        let filename = "equipments.json"
+        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
+            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Equipment]  {
+                self.equipments = loadFile
+            }
+        } catch {
+            print("Couldn't read file.")
+        }
+    }
+    func saveEngineers() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -104,20 +128,33 @@ class NetworkManager: BindableObject {
             }
             guard let data = data else { return }
             
+            let filename = "engineers.json"
+            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
             do {
                 let results = try JSONDecoder().decode([Engineer].self, from: data)
-                DispatchQueue.main.async {
-                    self.engineers = results
-                }
                 
+                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+                try data.write(to: fullPath)
+                self.engineers = results
             } catch let jsonErr {
                 print(jsonErr)
             }
         }
         task.resume()
     }
-    
-    func getEvents() {
+    func getEngineers() {
+        let filename = "engineers.json"
+        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
+            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Engineer]  {
+                self.engineers = loadFile
+            }
+        } catch {
+            print("Couldn't read file.")
+        }
+    }
+    func saveEvents() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/events/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -137,51 +174,64 @@ class NetworkManager: BindableObject {
             }
             guard let data = data else { return }
             
+            let filename = "events.json"
+            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
             do {
                 let results = try JSONDecoder().decode([Event].self, from: data)
-                DispatchQueue.main.async {
-                    self.events = results
-                }
-                
+                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+                try data.write(to: fullPath)
             } catch let jsonErr {
                 print(jsonErr)
             }
         }
         task.resume()
     }
+    func getEvents() {
+        let filename = "events.json"
+        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
+            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Event]  {
+                self.events = loadFile
+            }
+        } catch {
+            print("Couldn't read file.")
+        }
+    }
 }
 
 class SearchManager: BindableObject {
-    var didChange = PassthroughSubject<SearchManager, Never>()
+    
+    var willChange = PassthroughSubject<SearchManager, Never>()
 
     var searchText = "" {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var results = SearchResults(engineers: [], equipments: []) {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var resultsIsNotEmpty = false {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var engineers = [Engineer]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var equipments = [Equipment]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     var events = [Event]() {
-        didSet {
-            didChange.send(self)
+        willSet {
+            willChange.send(self)
         }
     }
     
@@ -189,6 +239,7 @@ class SearchManager: BindableObject {
         self.engineers = []
         self.equipments = []
         print("nice work")
+        print(NSHomeDirectory())
         let session = URLSession.shared
 //        print(query)
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
