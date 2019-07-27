@@ -13,7 +13,8 @@ struct EquipmentListView : View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-            TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
+            
+            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
                 
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             List {
@@ -22,10 +23,12 @@ struct EquipmentListView : View {
                 }
             }
                 .navigationBarTitle(Text("计算机设备"))
-                .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
-                    print("Attempt to save equipments")
+                .navigationBarItems(trailing: Button(action: {
+                    print("Attempt to refresh equipments")
                     self.networkManager.fetchEquipments()
-                })
+                }, label: {
+                    Image(systemName: "arrow.2.circlepath").font(.body)
+                }))
         }
     }
 }
