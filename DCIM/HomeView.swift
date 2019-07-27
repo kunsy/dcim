@@ -1,11 +1,3 @@
-//
-//  HomeView.swift
-//  DCIM
-//
-//  Created by Anyuting on 2019/6/19.
-//  Copyright © 2019 kunsy. All rights reserved.
-//
-
 import SwiftUI
 import UIKit
 import Combine
@@ -16,8 +8,8 @@ struct HomeView : View {
     
     @State private var searchText = ""
     @State private var showImage = true
-    @ObjectBinding var searchManager = SearchManager()
-    @ObjectBinding var networkManager = NetworkManager()
+    @EnvironmentObject var searchManager: SearchManager
+    @EnvironmentObject var networkManager: NetworkManager
     var body: some View {
  
         VStack {
@@ -49,8 +41,12 @@ struct HomeView : View {
                 NavigationLink(destination: EventListView()) {
                     Text("事件记录").foregroundColor(.orange)
                 }
+            }.onAppear{
+                self.networkManager.getEngineers()
+                self.networkManager.getEquipments()
+                self.networkManager.getEvents()
             }.font(.body)
-            SearchResultsView(searchManager: self.searchManager)
+            SearchResultsView()
         }.navigationBarTitle(Text("DCOM"), displayMode: .inline).accentColor(Color.blue)
     }
 }

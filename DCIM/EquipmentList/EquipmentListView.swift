@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EquipmentListView : View {
-    @ObjectBinding var networkManager = NetworkManager()
+    @EnvironmentObject var networkManager: NetworkManager
     @State private var searchText = ""
     var body: some View {
         VStack {

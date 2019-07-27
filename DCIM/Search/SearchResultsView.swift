@@ -9,9 +9,7 @@
 import SwiftUI
 
 struct SearchResultsView : View {
-    
-    @ObjectBinding var searchManager: SearchManager
-    
+    @EnvironmentObject var searchManager: SearchManager
     var body: some View {
         List {
             

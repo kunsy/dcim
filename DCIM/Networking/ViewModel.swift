@@ -1,11 +1,3 @@
-//
-//  Networking.swift
-//  DCIM
-//
-//  Created by Anyuting on 2019/6/19.
-//  Copyright © 2019 kunsy. All rights reserved.
-//
-
 import Foundation
 import SwiftUI
 import Combine
@@ -50,9 +42,6 @@ class NetworkManager: BindableObject {
             self.fetchEvents()
             self.fetchEngineers()
             self.fetchEquipments()
-            self.getEngineers()
-            self.getEquipments()
-            self.getEvents()
         }
     }
     
@@ -97,7 +86,6 @@ class NetworkManager: BindableObject {
             let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
             do {
                 let results = try JSONDecoder().decode([Equipment].self, from: data)
-                
                 let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
                 try data.write(to: fullPath)
             } catch let jsonErr {
@@ -112,13 +100,16 @@ class NetworkManager: BindableObject {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
             if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Equipment]  {
-                self.equipments = loadFile
+                DispatchQueue.main.async {
+                    self.equipments = loadFile
+                }
             }
         } catch {
             print("Couldn't read file.")
         }
     }
     func fetchEngineers() {
+        print("try fetch engineers...")
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -145,7 +136,12 @@ class NetworkManager: BindableObject {
                 
                 let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
                 try data.write(to: fullPath)
-                self.engineers = results
+                DispatchQueue.main.async {
+                    self.engineers = results
+                }
+                
+                print(results[0])
+                print("...fetch the first one engineer")
             } catch let jsonErr {
                 print(jsonErr)
             }
@@ -153,12 +149,17 @@ class NetworkManager: BindableObject {
         task.resume()
     }
     func getEngineers() {
+        print("try get engineers...")
         let filename = "engineers.json"
         let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
             if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Engineer]  {
-                self.engineers = loadFile
+                DispatchQueue.main.async {
+                    self.engineers = loadFile
+                }
+                print(loadFile[0])
+                print("...get the first engineer")
             }
         } catch {
             print("Couldn't read file.")
@@ -202,7 +203,9 @@ class NetworkManager: BindableObject {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
             if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Event]  {
-                self.events = loadFile
+                DispatchQueue.main.async {
+                    self.events = loadFile
+                }
             }
         } catch {
             print("Couldn't read file.")
@@ -265,17 +268,12 @@ class SearchManager: BindableObject {
         self.engineers = []
         self.equipments = []
         print("try to search...")
-        //print(NSHomeDirectory())
         let session = URLSession.shared
-//        print(query)
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-//        print(q!)
         guard let url = URL(string: "http://18.179.121.218/search/?query=\(q!))") else { return }
-//        print(url)
         let task = session.dataTask(with: url) { data, response, error in
             //check error
             if error != nil || data == nil {
-        
                 print("Client error!")
                 return
             }
