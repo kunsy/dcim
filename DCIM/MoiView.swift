@@ -36,7 +36,7 @@ struct MoiView : View {
                     }
                     }.foregroundColor(.orange)
                 
-                }.navigationBarTitle(Text("我的").color(.orange), displayMode: .inline)
+            }.navigationBarTitle(Text("我的").foregroundColor(.orange), displayMode: .inline)
         }
 
     }

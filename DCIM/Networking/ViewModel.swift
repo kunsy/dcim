@@ -17,33 +17,43 @@ class NetworkManager: BindableObject {
     
     var engineers = [Engineer]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var equipments = [Equipment]() {
         
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var events = [Event]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var searchEngineerResults = [Engineer]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
 
     init() {
-        saveEvents()
-        saveEngineers()
-        saveEquipments()
-        getEngineers()
-        getEquipments()
-        getEvents()
+        DispatchQueue.main.async {
+            self.fetchEvents()
+            self.fetchEngineers()
+            self.fetchEquipments()
+            self.getEngineers()
+            self.getEquipments()
+            self.getEvents()
+        }
     }
     
     func getDocumentsDirectory() -> URL {
@@ -63,7 +73,7 @@ class NetworkManager: BindableObject {
             })
         }
     }
-    func saveEquipments() {
+    func fetchEquipments() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/equipments/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -108,7 +118,7 @@ class NetworkManager: BindableObject {
             print("Couldn't read file.")
         }
     }
-    func saveEngineers() {
+    func fetchEngineers() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -154,7 +164,7 @@ class NetworkManager: BindableObject {
             print("Couldn't read file.")
         }
     }
-    func saveEvents() {
+    func fetchEvents() {
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/events/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -206,40 +216,56 @@ class SearchManager: BindableObject {
 
     var searchText = "" {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var results = SearchResults(engineers: [], equipments: []) {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var resultsIsNotEmpty = false {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var engineers = [Engineer]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var equipments = [Equipment]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
     }
     var events = [Event]() {
         willSet {
-            willChange.send(self)
+            DispatchQueue.main.async {
+                self.willChange.send(self)
+            }
         }
+    }
+    
+    func qrSearch(query: String) {
+        print("Now qrSearch for\(query)")
     }
     
     func search(query: String) {
         self.engineers = []
         self.equipments = []
-        print("nice work")
-        print(NSHomeDirectory())
+        print("try to search...")
+        //print(NSHomeDirectory())
         let session = URLSession.shared
 //        print(query)
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

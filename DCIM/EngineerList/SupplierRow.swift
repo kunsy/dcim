@@ -18,7 +18,7 @@ struct SupplierRow : View {
             Text(self.supplier)
                 .font(.headline)
 //                .alignmentGuide(.leading)
-            ForEach (self.engineers.identified(by: \.name)) { engineer in
+            ForEach (self.engineers, id: \.name) { engineer in
                 EngineerRow(engineer: engineer)
             }.padding()
         }

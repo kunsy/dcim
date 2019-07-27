@@ -25,7 +25,7 @@ struct EventListView : View {
                 .navigationBarTitle(Text("事件记录"))
                 .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
                     print("Attempt to save events")
-                    self.networkManager.saveEvents()
+                    self.networkManager.fetchEvents()
                 })
         }
 

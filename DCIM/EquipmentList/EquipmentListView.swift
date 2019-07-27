@@ -24,7 +24,7 @@ struct EquipmentListView : View {
                 .navigationBarTitle(Text("计算机设备"))
                 .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
                     print("Attempt to save equipments")
-                    self.networkManager.saveEquipments()
+                    self.networkManager.fetchEquipments()
                 })
         }
     }

@@ -21,52 +21,38 @@ struct HomeView : View {
     var body: some View {
  
         VStack {
-            
-            
-            Image("abc")
-                .resizable()
-                .clipShape(Circle())
-                .aspectRatio(contentMode: .fit)
-                .animation(.fluidSpring())
-            HStack {
-                TextField($searchText, placeholder: Text("sn"), onCommit: {
-                    //                self.showImage = false
-                    self.searchManager.search(query: self.searchText)
-                })
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
-                Image(systemName: "viewfinder.circle").tapAction {
-                    
-                }.padding(.trailing)
+            if showImage {
+                NavigationLink(destination: qrSearchView()) {
+                    Image("abc")
+                        .renderingMode(.original)
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .aspectRatio(contentMode: .fit)
+                }
             }
-
- 
-            //ScrollView {
+            HStack {
+                TextField("hello", text: $searchText).textFieldStyle(.roundedBorder).padding(.leading)
+                Button("Go") {
+                    self.showImage = false
+                    self.searchManager.search(query: self.searchText)
+                }.padding(.trailing)
+                
+            }
             HStack(spacing: 40) {
                 NavigationLink(destination: EquipmentListView()) {
                     Text("设备信息").foregroundColor(.orange)
                 }
-                
                 NavigationLink(destination: EngineerListView()) {
                     Text("工程师").foregroundColor(.orange)
                 }
-                
                 NavigationLink(destination: EventListView()) {
                     Text("事件记录").foregroundColor(.orange)
                 }
-                
             }.font(.body)
-
             SearchResultsView(searchManager: self.searchManager)
-
-            if !searchManager.resultsIsNotEmpty {
-                Spacer()
-            }
-            
-    }.navigationBarTitle(Text("DCOM"), displayMode: .inline)
-        .accentColor(Color.blue)
-        
-}
+        }.navigationBarTitle(Text("DCOM"), displayMode: .inline).accentColor(Color.blue)
+    }
 }
 
 #if DEBUG

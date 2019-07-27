@@ -28,14 +28,14 @@ struct EngineerListView : View {
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             
             List {
-                ForEach (suppliers.keys.sorted().identified(by: \.self)) { key in
+                ForEach (suppliers.keys.sorted(), id: \.self) { key in
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }
             }
                 .navigationBarTitle(Text("工程师"))
                 .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
                     print("Attempt to save engineers")
-                    self.networkManager.saveEngineers()
+                    self.networkManager.fetchEngineers()
                     
                 })
         }
