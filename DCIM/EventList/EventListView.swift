@@ -13,7 +13,7 @@ struct EventListView : View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-            TextField($searchText, placeholder: Text("name"), onEditingChanged: { (Bool) in
+            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
                 
             }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
             
@@ -23,7 +23,7 @@ struct EventListView : View {
                 }
             }
                 .navigationBarTitle(Text("事件记录"))
-                .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
+            .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").onTapGesture {
                     print("Attempt to save events")
                     self.networkManager.fetchEvents()
                 })
