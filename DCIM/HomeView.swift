@@ -24,7 +24,7 @@ struct HomeView : View {
                 }
             }
             HStack {
-                TextField("hello", text: $searchText).textFieldStyle(.roundedBorder).padding(.leading).padding(.top)
+                TextField("search", text: $searchText).textFieldStyle(.roundedBorder).padding(.leading).padding(.top)
                 Button("Go") {
                     self.showImage = false
                     self.searchManager.search(query: self.searchText)

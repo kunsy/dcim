@@ -1,11 +1,3 @@
-//
-//  SearchResults.swift
-//  DCIM
-//
-//  Created by Anyuting on 2019/6/19.
-//  Copyright © 2019 kunsy. All rights reserved.
-//
-
 import SwiftUI
 
 
@@ -74,6 +66,9 @@ struct Engineer: Codable, Identifiable {
     private enum CodingKeys : String, CodingKey {
         case supplier, supplierName, name, phone, identity, is_certify, is_cv, is_commit, is_train, add_time
     }
+//    public func encode(with aCoder: NSCoder) {
+//        aCoder.encode(, forKey: <#T##String#>)
+//    }
 }
 
 struct Event: Codable, Identifiable {

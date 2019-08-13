@@ -23,10 +23,12 @@ struct EventListView : View {
                 }
             }
                 .navigationBarTitle(Text("事件记录"))
-            .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").onTapGesture {
-                    print("Attempt to save events")
-                    self.networkManager.fetchEvents()
-                })
+                .navigationBarItems(trailing: Button(action: {
+                    print("Attempt to save engineers")
+                    self.networkManager.fetchEngineers()
+                }, label: {
+                    Image(systemName: "arrow.2.circlepath").font(.body)
+                }))
         }
 
     }

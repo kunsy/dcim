@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 
-class NetworkManager: BindableObject {
+class NetworkManager: ObservableObject {
     
     var willChange = PassthroughSubject<NetworkManager, Never>()
     
@@ -81,35 +81,14 @@ class NetworkManager: BindableObject {
                 return
             }
             guard let data = data else { return }
-            
-            let filename = "equipments.json"
-            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-            do {
-                let results = try JSONDecoder().decode([Equipment].self, from: data)
-                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
-                try data.write(to: fullPath)
-            } catch let jsonErr {
-                print(jsonErr)
-            }
+            UserDefaults.standard.set(data, forKey: "equipments")
+            UserDefaults.standard.synchronize()
+            print("save equipments successfully!")
+
         }
         task.resume()
     }
-    func getEquipments() {
-        let filename = "equipments.json"
-        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
-            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Equipment]  {
-                DispatchQueue.main.async {
-                    self.equipments = loadFile
-                }
-            }
-        } catch {
-            print("Couldn't read file.")
-        }
-    }
     func fetchEngineers() {
-        print("try fetch engineers...")
         let session = URLSession.shared
         let url = URL(string: "http://18.179.121.218/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
@@ -128,42 +107,11 @@ class NetworkManager: BindableObject {
                 return
             }
             guard let data = data else { return }
-            
-            let filename = "engineers.json"
-            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-            do {
-                let results = try JSONDecoder().decode([Engineer].self, from: data)
-                
-                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
-                try data.write(to: fullPath)
-                DispatchQueue.main.async {
-                    self.engineers = results
-                }
-                
-                print(results[0])
-                print("...fetch the first one engineer")
-            } catch let jsonErr {
-                print(jsonErr)
-            }
+            UserDefaults.standard.set(data, forKey: "engineers")
+            UserDefaults.standard.synchronize()
+            print("save engineers successfully!")
         }
         task.resume()
-    }
-    func getEngineers() {
-        print("try get engineers...")
-        let filename = "engineers.json"
-        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
-            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Engineer]  {
-                DispatchQueue.main.async {
-                    self.engineers = loadFile
-                }
-                print(loadFile[0])
-                print("...get the first engineer")
-            }
-        } catch {
-            print("Couldn't read file.")
-        }
     }
     func fetchEvents() {
         let session = URLSession.shared
@@ -184,36 +132,38 @@ class NetworkManager: BindableObject {
                 return
             }
             guard let data = data else { return }
-            
-            let filename = "events.json"
-            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-            do {
-                let results = try JSONDecoder().decode([Event].self, from: data)
-                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
-                try data.write(to: fullPath)
-            } catch let jsonErr {
-                print(jsonErr)
-            }
+            UserDefaults.standard.set(data, forKey: "events")
+            UserDefaults.standard.synchronize()
+            print("save events successfully!")
         }
         task.resume()
     }
-    func getEvents() {
-        let filename = "events.json"
-        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
-            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Event]  {
-                DispatchQueue.main.async {
-                    self.events = loadFile
-                }
-            }
-        } catch {
-            print("Couldn't read file.")
+    
+    func getEquipments() {
+        print("try get Equipments...")
+        if let jsonEquipments = UserDefaults.standard.value(forKey: "euipments") as? Data {
+            self.equipments = try! JSONDecoder().decode([Equipment].self, from: jsonEquipments)
         }
     }
+    
+    func getEngineers() {
+        print("try get Engineers...")
+        if let jsonEngineers = UserDefaults.standard.value(forKey: "engineers") as? Data {
+            self.engineers = try! JSONDecoder().decode([Engineer].self, from: jsonEngineers)
+        }
+    }
+
+    func getEvents() {
+        print("try get Events...")
+        if let jsonEvents = UserDefaults.standard.value(forKey: "events") as? Data {
+            self.events = try! JSONDecoder().decode([Event].self, from: jsonEvents)
+        }
+    }
+
 }
 
-class SearchManager: BindableObject {
+
+class SearchManager: ObservableObject {
     
     var willChange = PassthroughSubject<SearchManager, Never>()
 
@@ -308,4 +258,44 @@ class SearchManager: BindableObject {
     }
 }
 
+
+//            let filename = "equipments.json"
+//            let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+//            do {
+//                let results = try JSONDecoder().decode([Equipment].self, from: data)
+//                let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+//                try data.write(to: fullPath)
+//            } catch let jsonErr {
+//                print(jsonErr)
+//            }
+
+//        let filename = "engineers.json"
+//        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+//        do {
+////            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
+//            let data = try NSData(contentsOf: fullPath)
+//
+//            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Engineer]  {
+//                DispatchQueue.main.async {
+//                    self.engineers = loadFile
+//                }
+//                print(loadFile[0])
+//                print("...get the first engineer")
+//            }
+//        } catch {
+//            print("Couldn't read file.")
+//        }
+
+//        let filename = "events.json"
+//        let fullPath = self.getDocumentsDirectory().appendingPathComponent(filename)
+//        do {
+//            let data = try NSKeyedArchiver.archivedData(withRootObject: fullPath, requiringSecureCoding: false)
+//            if let loadFile = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Event]  {
+//                DispatchQueue.main.async {
+//                    self.events = loadFile
+//                }
+//            }
+//        } catch {
+//            print("Couldn't read file.")
+//        }
 

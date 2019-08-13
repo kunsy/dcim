@@ -32,11 +32,13 @@ struct EngineerListView : View {
                 }
             }
                 .navigationBarTitle(Text("工程师"))
-                .navigationBarItems(trailing: Image(systemName: "arrow.2.circlepath").tapAction {
+                .navigationBarItems(trailing: Button(action: {
                     print("Attempt to save engineers")
                     self.networkManager.fetchEngineers()
-                    
-                })
+                }, label: {
+                    Image(systemName: "arrow.2.circlepath").font(.body)
+                }))
+
         }
 
     }
