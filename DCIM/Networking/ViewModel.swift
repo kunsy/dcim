@@ -23,6 +23,15 @@ class NetworkManager: ObservableObject {
         return paths[0]
     }
     
+    func qrSearch(search text: String) {
+        guard !text.isEmpty else {
+            self.searchEquipmentResults = equipments
+            return
+        }
+        self.searchEquipmentResults = self.equipments.filter({ equipment -> Bool in
+            return (equipment.sn?.contains(text))!
+        })
+    }
     func search(search text: String, in target: String) {
         if target == "engineers" {
             guard !text.isEmpty else {

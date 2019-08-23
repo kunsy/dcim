@@ -1,9 +1,12 @@
 import AVFoundation
 import UIKit
+import SwiftUI
+import Combine
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
+    @EnvironmentObject var networkManager: NetworkManager
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +88,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
 
     func found(code: String) {
         print(code)
+        self.networkManager.qrSearch(search: code)
     }
 
     override var prefersStatusBarHidden: Bool {

@@ -22,13 +22,10 @@ struct EngineerListView : View {
     }
     var body: some View {
         VStack {
-            
-//            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
-//                self.networkManager.search(search: self.searchText, in: "engineers")
-//            }).padding([.horizontal]).padding(.top)
-//
             List {
-                SearchBar(text: $searchText, choice: "engineers")
+                SearchBar(text: $searchText, choice: "engineers").onAppear{
+                    self.networkManager.search(search: self.searchText, in: "engineers")
+                }
                 ForEach (suppliers.keys.sorted(), id: \.self) { key in
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }

@@ -14,7 +14,9 @@ struct EquipmentListView : View {
     var body: some View {
         VStack {
             List {
-                SearchBar(text: $searchText, choice: "equipments")
+                SearchBar(text: $searchText, choice: "equipments").onAppear{
+                    self.networkManager.search(search: self.searchText, in: "equipments")
+                }
                 ForEach (self.networkManager.searchEquipmentResults, id: \.name) { equipment in
                     EquipmentRow(equipment: equipment)
                 }

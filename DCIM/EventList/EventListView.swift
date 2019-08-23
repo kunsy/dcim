@@ -13,12 +13,10 @@ struct EventListView : View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-//            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
-//
-//            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
-//
             List {
-                SearchBar(text: $searchText, choice: "events")
+                SearchBar(text: $searchText, choice: "events").onAppear{
+                    self.networkManager.search(search: self.searchText, in: "events")
+                }
                 ForEach (self.networkManager.searchEventResults, id: \.abstract) { event in
                     EventRow(event: event)
                 }
