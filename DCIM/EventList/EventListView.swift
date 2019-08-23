@@ -13,19 +13,20 @@ struct EventListView : View {
     @State private var searchText = ""
     var body: some View {
         VStack {
-            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
-                
-            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
-            
+//            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
+//
+//            }).textFieldStyle(.roundedBorder).padding([.horizontal]).padding(.top)
+//
             List {
-                ForEach (self.networkManager.events) { event in
+                SearchBar(text: $searchText, choice: "events")
+                ForEach (self.networkManager.searchEventResults, id: \.abstract) { event in
                     EventRow(event: event)
                 }
             }
                 .navigationBarTitle(Text("事件记录"))
                 .navigationBarItems(trailing: Button(action: {
-                    print("Attempt to save engineers")
-                    self.networkManager.fetchEngineers()
+                    print("Refresh Events")
+                    self.networkManager.fetchEvents()
                 }, label: {
                     Image(systemName: "arrow.2.circlepath").font(.body)
                 }))

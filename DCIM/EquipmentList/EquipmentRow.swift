@@ -12,7 +12,7 @@ struct EquipmentRow : View {
     var equipment: Equipment
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            Text("\(equipment.name!)").font(.subheadline).foregroundColor(.orange)
+            Text("\(equipment.name)").font(.subheadline).foregroundColor(.orange)
             HStack {
                 Text("序列号：")
                 Spacer()
@@ -28,12 +28,12 @@ struct EquipmentRow : View {
             HStack {
                 Text("应用：")
                 Spacer()
-                Text("\(equipment.application ?? "" )")
+                Text("\(equipment.application ?? "" )").lineLimit(nil)
                 }.font(.body)
             HStack {
                 Text("分区：")
                 Spacer()
-                Text("\(equipment.partition ?? "" )")
+                Text("\(equipment.partition ?? "" )").lineLimit(nil)
                 }.font(.body)
             HStack {
                 Text("维保商：")

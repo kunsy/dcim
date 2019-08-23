@@ -16,24 +16,26 @@ struct EngineerListView : View {
     @State private var searchText = ""
     var suppliers: [String: [Engineer]] {
         .init(
-            grouping: networkManager.engineers,
+            grouping: networkManager.searchEngineerResults,
             by: { String($0.supplierName!) }
         )
     }
     var body: some View {
         VStack {
-            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
-                self.networkManager.search(search: self.searchText, in: "engineers")
-            }).padding([.horizontal]).padding(.top)
             
+//            TextField("name", text: $searchText, onEditingChanged: { (Bool) in
+//                self.networkManager.search(search: self.searchText, in: "engineers")
+//            }).padding([.horizontal]).padding(.top)
+//
             List {
+                SearchBar(text: $searchText, choice: "engineers")
                 ForEach (suppliers.keys.sorted(), id: \.self) { key in
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }
             }
                 .navigationBarTitle(Text("工程师"))
                 .navigationBarItems(trailing: Button(action: {
-                    print("Attempt to save engineers")
+                    print("Refresh engineers")
                     self.networkManager.fetchEngineers()
                 }, label: {
                     Image(systemName: "arrow.2.circlepath").font(.body)

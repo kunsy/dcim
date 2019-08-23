@@ -4,46 +4,19 @@ import Combine
 
 
 class NetworkManager: ObservableObject {
-    
-    var willChange = PassthroughSubject<NetworkManager, Never>()
-    
-    var engineers = [Engineer]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var equipments = [Equipment]() {
-        
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var events = [Event]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var searchEngineerResults = [Engineer]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
+    @Published
+    var engineers = [Engineer]()
+    @Published
+    var equipments = [Equipment]()
+    @Published
+    var events = [Event]()
 
-    init() {
-        DispatchQueue.main.async {
-            self.fetchEvents()
-            self.fetchEngineers()
-            self.fetchEquipments()
-        }
-    }
+    @Published
+    var searchEngineerResults = [Engineer]()
+    @Published
+    var searchEquipmentResults = [Equipment]()
+    @Published
+    var searchEventResults = [Event]()
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -53,12 +26,29 @@ class NetworkManager: ObservableObject {
     func search(search text: String, in target: String) {
         if target == "engineers" {
             guard !text.isEmpty else {
-                searchEngineerResults = engineers
+                self.searchEngineerResults = engineers
                 return
             }
             self.searchEngineerResults = self.engineers.filter({ engineer -> Bool in
-                
                 return engineer.name.contains(text)
+            })
+        }
+        if target == "equipments" {
+            guard !text.isEmpty else {
+                self.searchEquipmentResults = equipments
+                return
+            }
+            self.searchEquipmentResults = self.equipments.filter({ equipment -> Bool in
+                return equipment.name.contains(text)
+            })
+        }
+        if target == "events" {
+            guard !text.isEmpty else {
+                self.searchEventResults = events
+                return
+            }
+            self.searchEventResults = self.events.filter({ engineer -> Bool in
+                return engineer.abstract.contains(text)
             })
         }
     }
@@ -140,23 +130,33 @@ class NetworkManager: ObservableObject {
     }
     
     func getEquipments() {
-        print("try get Equipments...")
-        if let jsonEquipments = UserDefaults.standard.value(forKey: "euipments") as? Data {
+        print("Get Equipments...")
+        if let jsonEquipments = UserDefaults.standard.value(forKey: "equipments") as? Data {
             self.equipments = try! JSONDecoder().decode([Equipment].self, from: jsonEquipments)
+        } else {
+            print("Fetch Equips")
+            self.fetchEquipments()
         }
+        
     }
     
     func getEngineers() {
-        print("try get Engineers...")
+        print("Get Engineers...")
         if let jsonEngineers = UserDefaults.standard.value(forKey: "engineers") as? Data {
             self.engineers = try! JSONDecoder().decode([Engineer].self, from: jsonEngineers)
+        } else {
+            print("Fetch Engis")
+            self.fetchEngineers()
         }
     }
 
     func getEvents() {
-        print("try get Events...")
+        print("Get Events...")
         if let jsonEvents = UserDefaults.standard.value(forKey: "events") as? Data {
             self.events = try! JSONDecoder().decode([Event].self, from: jsonEvents)
+        } else {
+            print("Fetch Events")
+            self.fetchEvents()
         }
     }
 
@@ -164,52 +164,19 @@ class NetworkManager: ObservableObject {
 
 
 class SearchManager: ObservableObject {
-    
-    var willChange = PassthroughSubject<SearchManager, Never>()
+    @Published
+    var searchText = ""
+    @Published
+    var results = SearchResults(engineers: [], equipments: [])
+    @Published
+    var resultsIsNotEmpty = false
+    @Published
+    var engineers = [Engineer]()
+    @Published
+    var equipments = [Equipment]()
+    @Published
+    var events = [Event]()
 
-    var searchText = "" {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var results = SearchResults(engineers: [], equipments: []) {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var resultsIsNotEmpty = false {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var engineers = [Engineer]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var equipments = [Equipment]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    var events = [Event]() {
-        willSet {
-            DispatchQueue.main.async {
-                self.willChange.send(self)
-            }
-        }
-    }
-    
     func qrSearch(query: String) {
         print("Now qrSearch for\(query)")
     }
@@ -251,7 +218,10 @@ class SearchManager: ObservableObject {
                 }
             } catch let jsonErr {
                 print(jsonErr)
-                self.resultsIsNotEmpty = false
+                DispatchQueue.main.async {
+                    self.resultsIsNotEmpty = false
+                }
+                
             }
         }
         task.resume()

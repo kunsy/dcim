@@ -38,7 +38,7 @@ struct Equipment: Codable, Identifiable {
     var categoryName: String?
     var category: Int?
     var category_sub: String?
-    var name: String?
+    var name: String
     var sn: String?
     var asset_sn: String?
     var archive_sn: String?
@@ -77,7 +77,7 @@ struct Event: Codable, Identifiable {
     var equipmentSn: String?
     var equipment: Int?
     var date: String?
-    var abstract: String?
+    var abstract: String
     var dispose: String?
     var confirmTime: String?
     var status: String?
