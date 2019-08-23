@@ -15,24 +15,20 @@ class OrangeController: UIViewController {
         view.backgroundColor = .orange
     }
 }
-struct ScanController: UIViewControllerRepresentable {
-    func updateUIViewController(_ uiViewController: OrangeController, context: UIViewControllerRepresentableContext<ScanController>) {
-        
+struct ColorController: UIViewControllerRepresentable {
+    func updateUIViewController(_ uiViewController: OrangeController, context: UIViewControllerRepresentableContext<ColorController>) {
     }
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ScanController>) -> OrangeController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ColorController>) -> OrangeController {
         return OrangeController()
     }
 }
 
-struct PageViewController: UIViewControllerRepresentable {
+struct ScanController: UIViewControllerRepresentable {
     
-//    var controllers: [UIViewController]
-    
-    func makeUIViewController(context: UIViewControllerRepresentableContext<PageViewController>) -> ScannerViewController {
-//        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ScanController>) -> ScannerViewController {
         return ScannerViewController()
     }
-    func updateUIViewController(_ uiViewController: ScannerViewController, context: UIViewControllerRepresentableContext<PageViewController>) {
+    func updateUIViewController(_ uiViewController: ScannerViewController, context: UIViewControllerRepresentableContext<ScanController>) {
     }
 }
 

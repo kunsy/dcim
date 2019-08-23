@@ -12,8 +12,8 @@ import UIKit
 struct qrSearchView: View {
     
     var body: some View {
-        PageViewController()
-//        ScanController()
+//        ColorController()
+        ScanController()
     }
 }
 
