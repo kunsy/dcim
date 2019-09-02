@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchBar : View {
     @Binding var text: String
-    @State var choice: String
+    var choice: String
     @EnvironmentObject var networkManager: NetworkManager
     var body: some View {
         ZStack {

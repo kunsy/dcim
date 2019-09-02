@@ -56,8 +56,8 @@ class NetworkManager: ObservableObject {
                 self.searchEventResults = events
                 return
             }
-            self.searchEventResults = self.events.filter({ engineer -> Bool in
-                return engineer.abstract.contains(text)
+            self.searchEventResults = self.events.filter({ event -> Bool in
+                return event.abstract.contains(text)
             })
         }
     }

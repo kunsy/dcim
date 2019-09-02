@@ -12,38 +12,42 @@ struct EventRow : View {
     var event: Event
     var body: some View {
         Form  {
-            Text("\(event.abstract)").font(.subheadline).foregroundColor(.orange)
-            HStack {
-                Text("发生日期：")
-                Spacer()
-                Text("\(event.date ?? "" )")
-                }.font(.body)
-            HStack {
-                Text("事件处理：")
-                Spacer()
-                Text("\(event.dispose ?? "" )")
-                }.font(.body).lineLimit(nil)
-            HStack {
-                Text("故障确认时间：")
-                Spacer()
-                Text("\(event.confirmTime ?? "" )")
-                }.font(.body)
-            HStack {
-                Text("状态：")
-                Spacer()
-                Text("\(event.status ?? "" )")
-                }.font(.body)
-            HStack {
-                Text("故障原因：")
-                Spacer()
-                Text("\(event.causes ?? "" )")
-                }.font(.body)
-            HStack {
-                Text("备忘：")
-                Spacer()
-                Text("\(event.remark ?? "" )")
-                }.font(.body).lineLimit(nil)
-            }.frame(height: 600)
+            Section(header: Text("\(event.abstract)").font(.headline).foregroundColor(.orange), footer: Text("---------------")) {
+                HStack {
+                    Text("发生日期：")
+                    Spacer()
+                    Text("\(event.date ?? "" )")
+                    }.font(.body)
+                HStack {
+                    Text("事件处理：")
+                    Spacer()
+                    Text("\(event.dispose ?? "" )")
+                    }.font(.body).lineLimit(nil)
+                HStack {
+                    Text("故障确认时间：")
+                    Spacer()
+                    Text("\(event.confirmTime ?? "" )")
+                    }.font(.body)
+                HStack {
+                    Text("状态：")
+                    Spacer()
+                    Text("\(event.status ?? "" )")
+                    }.font(.body)
+                HStack {
+                    Text("故障原因：")
+                    Spacer()
+                    Text("\(event.causes ?? "" )")
+                    }.font(.body)
+                HStack {
+                    Text("备忘：")
+                    Spacer()
+                    Text("\(event.remark ?? "" )")
+                    }.font(.body).lineLimit(nil)
+            }
+//            Text("\(event.abstract)").font(.subheadline).foregroundColor(.orange)
+
+        }
+        .frame(height: 600)
     }
 }
 
