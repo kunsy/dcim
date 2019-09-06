@@ -11,8 +11,8 @@ import SwiftUI
 struct EventRow : View {
     var event: Event
     var body: some View {
-        Form  {
-            Section(header: Text("\(event.abstract)").font(.headline).foregroundColor(.orange), footer: Text("---------------")) {
+        VStack  {
+            Section(header: Text("\(event.abstract)").font(.headline).foregroundColor(.orange)) {
                 HStack {
                     Text("发生日期：")
                     Spacer()
@@ -47,7 +47,7 @@ struct EventRow : View {
 //            Text("\(event.abstract)").font(.subheadline).foregroundColor(.orange)
 
         }
-        .frame(height: 600)
+//        .frame(height: 600)
     }
 }
 

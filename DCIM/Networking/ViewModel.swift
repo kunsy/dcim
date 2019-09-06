@@ -3,7 +3,7 @@ import SwiftUI
 import Combine
 
 
-class NetworkManager: ObservableObject {
+class ViewModel: ObservableObject {
     @Published
     var engineers = [Engineer]()
     @Published

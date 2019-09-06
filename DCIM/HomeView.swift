@@ -9,7 +9,7 @@ struct HomeView : View {
     @State private var searchText = ""
     @State private var showImage = true
     @EnvironmentObject var searchManager: SearchManager
-    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var networkManager: ViewModel
     var body: some View {
  
         VStack {

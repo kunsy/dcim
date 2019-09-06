@@ -15,6 +15,7 @@ struct MoiView : View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipped()
+//                .edgesIgnoringSafeArea(.all)
 
             List {
                 
@@ -26,7 +27,7 @@ struct MoiView : View {
                         Text("已处理事件").font(.body)
                     }
                     }.foregroundColor(.orange)
-                Spacer()
+//                Spacer()
                 Section (header: Text("工作内容")){
                     NavigationLink (destination: Text("事件单API接口")) {
                         Text("待处理事件").font(.body)

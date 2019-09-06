@@ -1,6 +1,14 @@
 import SwiftUI
 
 
+struct User: Codable, Identifiable, Hashable {
+    var id: UUID
+    var name: String
+    var secret: String?
+    var accesstoken: String?
+    var refreshtoken: String?
+}
+
 struct SearchResults: Codable {
     
     var engineers: [Engineer]?

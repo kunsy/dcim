@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let networkManager = NetworkManager()
+            let networkManager = ViewModel()
             let searchManager = SearchManager()
             window.rootViewController = UIHostingController(rootView: ContentView()
                 .environmentObject(networkManager)

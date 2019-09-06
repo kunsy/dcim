@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EventListView : View {
-    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var networkManager: ViewModel
     @State private var searchText = ""
     var body: some View {
         VStack {

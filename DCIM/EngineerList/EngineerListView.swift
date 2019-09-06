@@ -12,7 +12,7 @@ import Combine
 
 
 struct EngineerListView : View {
-    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var networkManager: ViewModel
     @State private var searchText = ""
     var suppliers: [String: [Engineer]] {
         .init(

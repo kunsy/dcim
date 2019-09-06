@@ -11,7 +11,7 @@ import SwiftUI
 struct SearchBar : View {
     @Binding var text: String
     var choice: String
-    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var networkManager: ViewModel
     var body: some View {
         ZStack {
 //            Color.orange

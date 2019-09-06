@@ -6,7 +6,7 @@ import Combine
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
-    @EnvironmentObject var networkManager: NetworkManager
+    @EnvironmentObject var networkManager: ViewModel
 
     override func viewDidLoad() {
         super.viewDidLoad()
