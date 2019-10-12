@@ -20,8 +20,9 @@ struct ContentView : View {
             }
                 .font(.title)
                 .tabItem {
-                        Image("btn_home_normal")
-                        Text("首页")
+                    Image(systemName: "house.fill")
+//                        Image("btn_home_normal")
+                    Text("首页")
                 }
                 .tag(0)
 
@@ -30,7 +31,7 @@ struct ContentView : View {
             }
                 .font(.title)
                 .tabItem {
-                    Image("btn_column_normal")
+                    Image(systemName: "flame.fill")
                     Text("事件")
                 }
                 .tag(1)
@@ -40,7 +41,7 @@ struct ContentView : View {
             }
                 .font(.title)
                 .tabItem {
-                    Image("btn_live_normal")
+                    Image(systemName: "paperplane.fill")
                     Text("报告")
                 }
                 .tag(2)
@@ -50,7 +51,7 @@ struct ContentView : View {
             }
                 .font(.title)
                 .tabItem {
-                    Image("btn_user_normal")
+                    Image(systemName: "heart.fill")
                     Text("我的")
                 }
                 .tag(3)

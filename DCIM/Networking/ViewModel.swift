@@ -5,6 +5,8 @@ import Combine
 
 class ViewModel: ObservableObject {
     @Published
+    var user = User(id: UUID(), name: "", secret: "", accesstoken: "", refreshtoken: "")
+    @Published
     var engineers = [Engineer]()
     @Published
     var equipments = [Equipment]()
@@ -63,7 +65,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEquipments() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218/equipments/")
+        let url = URL(string: "http://52.199.125.59/equipments/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -89,7 +91,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEngineers() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218/engineers/")
+        let url = URL(string: "http://52.199.125.59/engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -114,7 +116,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEvents() {
         let session = URLSession.shared
-        let url = URL(string: "http://18.179.121.218/events/")
+        let url = URL(string: "http://52.199.125.59/events/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -196,7 +198,7 @@ class SearchManager: ObservableObject {
         print("try to search...")
         let session = URLSession.shared
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let url = URL(string: "http://18.179.121.218/search/?query=\(q!))") else { return }
+        guard let url = URL(string: "http://52.199.125.59/search/?query=\(q!))") else { return }
         let task = session.dataTask(with: url) { data, response, error in
             //check error
             if error != nil || data == nil {
