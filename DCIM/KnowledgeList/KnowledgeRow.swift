@@ -11,7 +11,7 @@ import SwiftUI
 struct KnowledgeRow: View {
     var knowledge: Knowledge
     var body: some View {
-        VStack  {
+        VStack (alignment: .leading, spacing: 0) {
             Section(header: Text("\(knowledge.name)").font(.headline).foregroundColor(.orange)) {
                 HStack {
                     Text("处理过程：")
