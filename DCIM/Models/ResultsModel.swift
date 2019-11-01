@@ -13,6 +13,7 @@ struct SearchResults: Codable {
     
     var engineers: [Engineer]?
     var equipments: [Equipment]?
+    var knowledges: [Knowledge]?
 }
 
 struct EquipmentsAPI: Codable {
@@ -97,4 +98,17 @@ struct Event: Codable, Identifiable {
         case confirmTime = "confirm_time"
         case equipment, equipmentName, equipmentSn, date, abstract, dispose, status, causes, remark, add_time
     }
+}
+
+struct Knowledge: Codable, Identifiable {
+    var id: Int?
+    var division: String?
+    var category: Int?
+    var supplier: Int?
+    var category_sub: String?
+    var name: String
+    var dispose: String?
+    var remark: String?
+    var add_time: String?
+    
 }

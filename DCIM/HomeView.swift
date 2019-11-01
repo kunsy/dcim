@@ -38,6 +38,9 @@ struct HomeView : View {
                 NavigationLink(destination: EngineerListView()) {
                     Text("工程师").foregroundColor(.orange)
                 }
+                NavigationLink(destination: KnowledgeListView()) {
+                    Text("知识库").foregroundColor(.orange)
+                }
                 NavigationLink(destination: EventListView()) {
                     Text("事件记录").foregroundColor(.orange)
                 }
@@ -45,6 +48,7 @@ struct HomeView : View {
                 self.networkManager.getEngineers()
                 self.networkManager.getEquipments()
                 self.networkManager.getEvents()
+                self.networkManager.getKnowledge()
             }.font(.body)
             SearchResultsView()
         }.navigationBarTitle(Text("DCOM"), displayMode: .inline).accentColor(Color.blue)

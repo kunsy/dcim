@@ -14,16 +14,19 @@ struct SearchResultsView : View {
         List {
             
             Section {
-                ForEach(self.searchManager.equipments) {equipment in
+                ForEach(self.searchManager.equipments, id: \.name) {equipment in
                     EquipmentRow(equipment: equipment)
                 }
             }
             Section {
-
-                ForEach(self.searchManager.engineers) { engineer in
+                ForEach(self.searchManager.engineers, id: \.name) { engineer in
                     EngineerRow(engineer: engineer)
                 }
-
+            }
+            Section {
+                ForEach(self.searchManager.knowledges, id: \.name) { knowledge in
+                    KnowledgeRow(knowledge: knowledge)
+                }
             }
         }
     }

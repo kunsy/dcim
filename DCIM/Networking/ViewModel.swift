@@ -12,13 +12,17 @@ class ViewModel: ObservableObject {
     var equipments = [Equipment]()
     @Published
     var events = [Event]()
-
+    @Published
+    var knowledges = [Knowledge]()
+    
     @Published
     var searchEngineerResults = [Engineer]()
     @Published
     var searchEquipmentResults = [Equipment]()
     @Published
     var searchEventResults = [Event]()
+    @Published
+    var searchKnowledgeResults = [Knowledge]()
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -60,6 +64,16 @@ class ViewModel: ObservableObject {
             }
             self.searchEventResults = self.events.filter({ event -> Bool in
                 return event.abstract.contains(text)
+            })
+        }
+        
+        if target == "knowledge" {
+            guard !text.isEmpty else {
+                self.searchKnowledgeResults = knowledges
+                return
+            }
+            self.searchKnowledgeResults = self.knowledges.filter({ knowledge -> Bool in
+                return knowledge.name.contains(text)
             })
         }
     }
@@ -139,6 +153,32 @@ class ViewModel: ObservableObject {
         }
         task.resume()
     }
+
+    func fetchKnowledges() {
+        let session = URLSession.shared
+        let url = URL(string: "http://52.199.125.59/knowledge/")
+        let task = session.dataTask(with: url!) { data, response, error in
+            //check error
+            if error != nil || data == nil {
+                print("Client error!")
+                return
+            }
+            //check server error
+            guard let response = response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
+                print("Server error!")
+                return
+            }
+            guard let mime = response.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            guard let data = data else { return }
+            UserDefaults.standard.set(data, forKey: "knowledges")
+            UserDefaults.standard.synchronize()
+            print("save knowledge successfully!")
+        }
+        task.resume()
+    }
     
     func getEquipments() {
         print("Get Equipments...")
@@ -171,6 +211,15 @@ class ViewModel: ObservableObject {
         }
     }
 
+    func getKnowledge() {
+        print("Get Knowledge...")
+        if let jsonKnowledge = UserDefaults.standard.value(forKey: "knowledges") as? Data {
+            self.knowledges = try! JSONDecoder().decode([Knowledge].self, from: jsonKnowledge)
+        } else {
+            print("Fetch Knowledge")
+            self.fetchKnowledges()
+        }
+    }
 }
 
 
@@ -178,7 +227,7 @@ class SearchManager: ObservableObject {
     @Published
     var searchText = ""
     @Published
-    var results = SearchResults(engineers: [], equipments: [])
+    var results = SearchResults(engineers: [], equipments: [], knowledges: [])
     @Published
     var resultsIsNotEmpty = false
     @Published
@@ -187,7 +236,9 @@ class SearchManager: ObservableObject {
     var equipments = [Equipment]()
     @Published
     var events = [Event]()
-
+    @Published
+    var knowledges = [Knowledge]()
+    
     func qrSearch(query: String) {
         print("Now qrSearch for\(query)")
     }
@@ -195,6 +246,7 @@ class SearchManager: ObservableObject {
     func search(query: String) {
         self.engineers = []
         self.equipments = []
+        self.knowledges = []
         print("try to search...")
         let session = URLSession.shared
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -225,6 +277,9 @@ class SearchManager: ObservableObject {
                     }
                     if results.equipments != nil {
                         self.equipments = results.equipments!
+                    }
+                    if results.knowledges != nil {
+                        self.knowledges = results.knowledges!
                     }
                 }
             } catch let jsonErr {
