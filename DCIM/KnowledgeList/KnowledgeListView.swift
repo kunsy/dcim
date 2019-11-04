@@ -21,7 +21,7 @@ struct KnowledgeListView: View {
                     KnowledgeRow(knowledge: knowledge)
                 }
             }
-                .navigationBarTitle(Text("事件记录"))
+                .navigationBarTitle(Text("知识库"))
                 .navigationBarItems(trailing: Button(action: {
                     print("Refresh Events")
                     self.networkManager.fetchEvents()

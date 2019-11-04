@@ -14,50 +14,54 @@ struct ContentView : View {
     var body: some View {
         
         TabView {
-
             NavigationView {
                 HomeView()
             }
-                .font(.title)
-                .tabItem {
-                    Image(systemName: "house.fill")
-//                        Image("btn_home_normal")
-                    Text("首页")
-                }
-                .tag(0)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .padding()
+            .font(.title)
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("首页")
+            }
+            .tag(0)
 
             NavigationView {
                 EventView()
             }
-                .font(.title)
-                .tabItem {
-                    Image(systemName: "flame.fill")
-                    Text("事件")
-                }
-                .tag(1)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .padding()
+            .font(.title)
+            .tabItem {
+                Image(systemName: "flame.fill")
+                Text("事件")
+            }
+            .tag(1)
             
             NavigationView {
                 ReportView()
             }
-                .font(.title)
-                .tabItem {
-                    Image(systemName: "paperplane.fill")
-                    Text("报告")
-                }
-                .tag(2)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .padding()
+            .font(.title)
+            .tabItem {
+                Image(systemName: "paperplane.fill")
+                Text("报告")
+            }
+            .tag(2)
             
             NavigationView {
                 MoiView()
             }
-                .font(.title)
-                .tabItem {
-                    Image(systemName: "heart.fill")
-                    Text("我的")
-                }
-                .tag(3)
+            .navigationViewStyle(StackNavigationViewStyle())
+            .padding()
+            .font(.title)
+            .tabItem {
+                Image(systemName: "heart.fill")
+                Text("我的")
+            }
+            .tag(3)
         }
-            
-
     }
 }
 
