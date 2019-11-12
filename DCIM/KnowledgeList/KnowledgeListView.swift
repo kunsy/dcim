@@ -24,8 +24,8 @@ struct KnowledgeListView: View {
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("知识库"))
                 .navigationBarItems(trailing: Button(action: {
-                    print("Refresh Events")
-                    self.networkManager.fetchEvents()
+                    print("Refresh Knowledge")
+                    self.networkManager.fetchKnowledges()
                 }, label: {
                     Image(systemName: "arrow.2.circlepath").font(.body)
                 }))

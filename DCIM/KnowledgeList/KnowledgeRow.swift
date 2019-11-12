@@ -28,11 +28,11 @@ struct KnowledgeRow: View {
                     Spacer()
                     Text("\(knowledge.division ?? "" )")
                     }.font(.body)
-                HStack {
-                    Text("添加时间：")
-                    Spacer()
-                    Text("\(knowledge.add_time ?? "" )")
-                    }.font(.body).lineLimit(nil)
+//                HStack {
+//                    Text("添加时间：")
+//                    Spacer()
+//                    Text("\(knowledge.add_time ?? "" )")
+//                    }.font(.body).lineLimit(nil)
             }
 //            Text("\(event.abstract)").font(.subheadline).foregroundColor(.orange)
 
