@@ -21,6 +21,7 @@ struct EventListView : View {
                     EventRow(event: event)
                 }
             }
+                .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("事件记录"))
                 .navigationBarItems(trailing: Button(action: {
                     print("Refresh Events")

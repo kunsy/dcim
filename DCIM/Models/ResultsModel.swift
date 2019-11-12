@@ -14,6 +14,7 @@ struct SearchResults: Codable {
     var engineers: [Engineer]?
     var equipments: [Equipment]?
     var knowledges: [Knowledge]?
+    var total:Int?
 }
 
 struct EquipmentsAPI: Codable {

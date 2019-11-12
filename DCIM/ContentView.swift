@@ -12,13 +12,13 @@ struct ContentView : View {
     @State private var selection = 0
  
     var body: some View {
-        
         TabView {
             NavigationView {
                 HomeView()
-            }
+                }
+//                .background(Color.green)
             .navigationViewStyle(StackNavigationViewStyle())
-            .padding()
+//            .padding()
             .font(.title)
             .tabItem {
                 Image(systemName: "house.fill")
@@ -30,7 +30,7 @@ struct ContentView : View {
                 EventView()
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .padding()
+//            .padding()
             .font(.title)
             .tabItem {
                 Image(systemName: "flame.fill")
@@ -42,7 +42,7 @@ struct ContentView : View {
                 ReportView()
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .padding()
+//            .padding()
             .font(.title)
             .tabItem {
                 Image(systemName: "paperplane.fill")
@@ -54,7 +54,7 @@ struct ContentView : View {
                 MoiView()
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .padding()
+//            .padding()
             .font(.title)
             .tabItem {
                 Image(systemName: "heart.fill")

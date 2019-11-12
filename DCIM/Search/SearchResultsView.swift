@@ -11,23 +11,27 @@ import SwiftUI
 struct SearchResultsView : View {
     @EnvironmentObject var searchManager: SearchManager
     var body: some View {
-        List {
+        VStack (alignment: .leading) {
             
-            Section {
-                ForEach(self.searchManager.equipments, id: \.name) {equipment in
-                    EquipmentRow(equipment: equipment)
-                }
+            List {
+              Text("一共搜索到\(searchManager.total)条结果").font(.body)
+              Section {
+                  ForEach(self.searchManager.equipments, id: \.name) {equipment in
+                      EquipmentRow(equipment: equipment)
+                  }
+              }
+              Section {
+                  ForEach(self.searchManager.engineers, id: \.name) { engineer in
+                      EngineerRow(engineer: engineer)
+                  }
+              }
+              Section {
+                  ForEach(self.searchManager.knowledges, id: \.name) { knowledge in
+                      KnowledgeRow(knowledge: knowledge)
+                  }
+              }
             }
-            Section {
-                ForEach(self.searchManager.engineers, id: \.name) { engineer in
-                    EngineerRow(engineer: engineer)
-                }
-            }
-            Section {
-                ForEach(self.searchManager.knowledges, id: \.name) { knowledge in
-                    KnowledgeRow(knowledge: knowledge)
-                }
-            }
+//            .listStyle(GroupedListStyle())
         }
     }
 }

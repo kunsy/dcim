@@ -21,6 +21,7 @@ struct KnowledgeListView: View {
                     KnowledgeRow(knowledge: knowledge)
                 }
             }
+                .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("知识库"))
                 .navigationBarItems(trailing: Button(action: {
                     print("Refresh Events")

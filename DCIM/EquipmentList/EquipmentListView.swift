@@ -21,6 +21,7 @@ struct EquipmentListView : View {
                     EquipmentRow(equipment: equipment)
                 }
             }
+                .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("计算机设备"))
                 .navigationBarItems(trailing: Button(action: {
                     print("Refresh equipments")

@@ -28,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 .environmentObject(viewModel)
                 .environmentObject(searchManager))
             window.tintColor = UIColor.systemOrange
+            
             self.window = window
             window.makeKeyAndVisible()
         }

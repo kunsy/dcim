@@ -238,6 +238,8 @@ class SearchManager: ObservableObject {
     var events = [Event]()
     @Published
     var knowledges = [Knowledge]()
+    @Published
+    var total = 0
     
     func qrSearch(query: String) {
         print("Now qrSearch for\(query)")
@@ -280,6 +282,9 @@ class SearchManager: ObservableObject {
                     }
                     if results.knowledges != nil {
                         self.knowledges = results.knowledges!
+                    }
+                    if results.total != nil {
+                        self.total = results.total!
                     }
                 }
             } catch let jsonErr {

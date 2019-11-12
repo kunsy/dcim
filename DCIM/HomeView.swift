@@ -24,14 +24,20 @@ struct HomeView : View {
                 }
             }
             HStack {
-                TextField("search", text: $searchText).padding(.leading).padding(.top).textFieldStyle(RoundedBorderTextFieldStyle())
-                Button("Go") {
-                    self.showImage = false
-                    self.searchManager.search(query: self.searchText)
-                }.padding(.trailing)
+
+                TextField("search", text: $searchText, onCommit: {
+                     self.showImage = false
+                     self.searchManager.search(query: self.searchText)
+                }).padding([.leading, .trailing]).padding(.top).textFieldStyle(RoundedBorderTextFieldStyle())
+                    
+//                Button("Go") {
+//                    self.showImage = false
+//                    self.searchManager.search(query: self.searchText)
+//                }
+//                .padding(.trailing)
                 
             }
-            HStack(spacing: 40) {
+            HStack(spacing: 20) {
                 NavigationLink(destination: EquipmentListView()) {
                     Text("设备信息").foregroundColor(.orange)
                 }
@@ -49,9 +55,17 @@ struct HomeView : View {
                 self.networkManager.getEquipments()
                 self.networkManager.getEvents()
                 self.networkManager.getKnowledge()
-            }.font(.body)
-            SearchResultsView()
-        }.navigationBarTitle(Text("DCOM"), displayMode: .inline).accentColor(Color.blue)
+                }.font(.body).padding()
+            if searchManager.resultsIsNotEmpty {
+                SearchResultsView()
+                
+            }
+            Spacer()
+            
+        }.navigationBarTitle(Text("DCIM"), displayMode: .inline).accentColor(Color.orange)
+            
+//            .navigationBarHidden(true)
+        
     }
 }
 

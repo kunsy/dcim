@@ -30,6 +30,7 @@ struct EngineerListView : View {
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }
             }
+                .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("工程师"))
                 .navigationBarItems(trailing: Button(action: {
                     print("Refresh engineers")
