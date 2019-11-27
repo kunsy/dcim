@@ -14,6 +14,7 @@
 		5F0927F822BA817900CA26D3 /* EngineerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0927F722BA817900CA26D3 /* EngineerRow.swift */; };
 		5F0FAD8722BCC1D9006BAAAB /* SupplierRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */; };
 		5F0FAD8922BCCD09006BAAAB /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */; };
+		5F11AB10238E4048006039BB /* SetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F11AB0F238E4048006039BB /* SetUp.swift */; };
 		5F125CCC22EBE7CC00F6269E /* qrSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F125CCB22EBE7CC00F6269E /* qrSearchView.swift */; };
 		5F125CD022EBEFBC00F6269E /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F125CCF22EBEFBC00F6269E /* ScannerViewController.swift */; };
 		5F1A165922CC92F00086BCC8 /* EquipmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1A165822CC92F00086BCC8 /* EquipmentListView.swift */; };
@@ -44,6 +45,7 @@
 		5F0927F722BA817900CA26D3 /* EngineerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerRow.swift; sourceTree = "<group>"; };
 		5F0FAD8622BCC1D9006BAAAB /* SupplierRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierRow.swift; sourceTree = "<group>"; };
 		5F0FAD8822BCCD09006BAAAB /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		5F11AB0F238E4048006039BB /* SetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUp.swift; sourceTree = "<group>"; };
 		5F125CCB22EBE7CC00F6269E /* qrSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = qrSearchView.swift; sourceTree = "<group>"; };
 		5F125CCF22EBEFBC00F6269E /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		5F1A165822CC92F00086BCC8 /* EquipmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentListView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				5F23E7BE22D58A020014F761 /* ReportView.swift */,
 				5F23E7C022D58C380014F761 /* MoiView.swift */,
 				5F40BCEE2322299F009AE1EC /* Login.swift */,
+				5F11AB0F238E4048006039BB /* SetUp.swift */,
 				5FFDD88522B91F1D00C2383A /* Assets.xcassets */,
 				5FFDD88A22B91F1D00C2383A /* LaunchScreen.storyboard */,
 				5FFDD88D22B91F1D00C2383A /* Info.plist */,
@@ -275,6 +278,7 @@
 			files = (
 				5FFDD88022B91F1C00C2383A /* AppDelegate.swift in Sources */,
 				5F125CCC22EBE7CC00F6269E /* qrSearchView.swift in Sources */,
+				5F11AB10238E4048006039BB /* SetUp.swift in Sources */,
 				5F0927F822BA817900CA26D3 /* EngineerRow.swift in Sources */,
 				5F125CD022EBEFBC00F6269E /* ScannerViewController.swift in Sources */,
 				5F23E7BF22D58A020014F761 /* ReportView.swift in Sources */,

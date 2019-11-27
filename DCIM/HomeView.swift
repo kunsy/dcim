@@ -14,7 +14,7 @@ struct HomeView : View {
  
         VStack {
             if showImage {
-                NavigationLink(destination: qrSearchView()) {
+                NavigationLink(destination: SetUp()) {
                     Image("abc")
                         .renderingMode(.original)
                         .resizable()

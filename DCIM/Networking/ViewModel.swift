@@ -5,7 +5,10 @@ import Combine
 
 class ViewModel: ObservableObject {
     @Published
+    var baseUrl = "http://52.199.125.59/"
+    @Published
     var user = User(id: UUID(), name: "", secret: "", accesstoken: "", refreshtoken: "")
+    
     @Published
     var engineers = [Engineer]()
     @Published
@@ -79,7 +82,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEquipments() {
         let session = URLSession.shared
-        let url = URL(string: "http://52.199.125.59/equipments/")
+        let url = URL(string: baseUrl + "equipments/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -105,7 +108,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEngineers() {
         let session = URLSession.shared
-        let url = URL(string: "http://52.199.125.59/engineers/")
+        let url = URL(string: baseUrl + "engineers/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -130,7 +133,7 @@ class ViewModel: ObservableObject {
     }
     func fetchEvents() {
         let session = URLSession.shared
-        let url = URL(string: "http://52.199.125.59/events/")
+        let url = URL(string: baseUrl + "events/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -156,7 +159,7 @@ class ViewModel: ObservableObject {
 
     func fetchKnowledges() {
         let session = URLSession.shared
-        let url = URL(string: "http://52.199.125.59/knowledge/")
+        let url = URL(string: baseUrl + "knowledge/")
         let task = session.dataTask(with: url!) { data, response, error in
             //check error
             if error != nil || data == nil {
@@ -225,6 +228,8 @@ class ViewModel: ObservableObject {
 
 class SearchManager: ObservableObject {
     @Published
+    var baseUrl = "http://52.199.125.59/"
+    @Published
     var searchText = ""
     @Published
     var results = SearchResults(engineers: [], equipments: [], knowledges: [])
@@ -252,7 +257,7 @@ class SearchManager: ObservableObject {
         print("try to search...")
         let session = URLSession.shared
         let q = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        guard let url = URL(string: "http://52.199.125.59/search/?query=\(q!))") else { return }
+        guard let url = URL(string: baseUrl + "search/?query=\(q!))") else { return }
         let task = session.dataTask(with: url) { data, response, error in
             //check error
             if error != nil || data == nil {
