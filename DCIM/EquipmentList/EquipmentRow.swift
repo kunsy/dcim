@@ -42,13 +42,25 @@ struct EquipmentRow : View {
 //                    Text("\(equipment.supporter ?? "" )")
 //                    }.font(.body)
 //            }
-            Text("\(equipment.name)").font(.subheadline).foregroundColor(.orange)
+            Text("\(equipment.name)").font(.headline).foregroundColor(.orange)
             HStack {
                 Text("序列号：")
                 Spacer()
                 Text("\(equipment.sn ?? "" )")
                 }.font(.body)
+            
+            HStack {
+                Text("资产编号：")
+                Spacer()
+                Text("\(equipment.asset_sn ?? "" )")
+                }.font(.body)
 
+            HStack {
+                Text("档案卡号：")
+                Spacer()
+                Text("\(equipment.archive_sn ?? "" )")
+                }.font(.body)
+            
             HStack {
                 Text("位置：")
                 Spacer()
