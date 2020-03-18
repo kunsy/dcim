@@ -5,7 +5,7 @@ import Combine
 
 class ViewModel: ObservableObject {
     @Published
-    var baseUrl = "http://52.199.125.59/"
+    var baseUrl = "http://66.42.44.167/"
     @Published
     var user = User(id: UUID(), name: "", secret: "", accesstoken: "", refreshtoken: "")
     
@@ -228,7 +228,7 @@ class ViewModel: ObservableObject {
 
 class SearchManager: ObservableObject {
     @Published
-    var baseUrl = "http://52.199.125.59/"
+    var baseUrl = "http://66.42.44.167/"
     @Published
     var searchText = ""
     @Published
