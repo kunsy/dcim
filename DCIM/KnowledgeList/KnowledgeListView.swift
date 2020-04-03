@@ -12,6 +12,12 @@ struct KnowledgeListView: View {
     @EnvironmentObject var networkManager: ViewModel
     @State private var searchText = ""
     @State private var currentIndex = 0
+    var categorys: [String: [Knowledge]] {
+        .init(
+            grouping: networkManager.searchKnowledgeResults,
+            by: { String($0.category_sub!) }
+        )
+    }
     var body: some View {
         VStack {
 //            Picker(selection: $currentIndex) {
@@ -26,9 +32,8 @@ struct KnowledgeListView: View {
                     self.networkManager.search(search: self.searchText, in: "knowledge")
                 }
 
-                
-                ForEach (self.networkManager.searchKnowledgeResults, id: \.name) { knowledge in
-                    KnowledgeRow(knowledge: knowledge)
+                ForEach (categorys.keys.sorted(), id: \.self) { key in
+                    CategoryRow(category: key, knowledges: self.categorys[key]!)
                 }
             }
                 .listStyle(GroupedListStyle())

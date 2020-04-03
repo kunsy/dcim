@@ -48,7 +48,7 @@ class ViewModel: ObservableObject {
                 return
             }
             self.searchEngineerResults = self.engineers.filter({ engineer -> Bool in
-                return engineer.name.contains(text)
+                return engineer.name.contains(text)||(engineer.supplierName?.lowercased().contains(text.lowercased()))!
             })
         }
         if target == "equipments" {
@@ -57,7 +57,7 @@ class ViewModel: ObservableObject {
                 return
             }
             self.searchEquipmentResults = self.equipments.filter({ equipment -> Bool in
-                return equipment.name.contains(text)
+                return equipment.name.lowercased().contains(text.lowercased())
             })
         }
         if target == "events" {
@@ -66,7 +66,7 @@ class ViewModel: ObservableObject {
                 return
             }
             self.searchEventResults = self.events.filter({ event -> Bool in
-                return event.abstract.contains(text)
+                return event.abstract.lowercased().contains(text.lowercased())
             })
         }
         
@@ -76,7 +76,7 @@ class ViewModel: ObservableObject {
                 return
             }
             self.searchKnowledgeResults = self.knowledges.filter({ knowledge -> Bool in
-                return knowledge.name.contains(text)
+                return knowledge.name.lowercased().contains(text.lowercased())
             })
         }
     }
@@ -228,7 +228,7 @@ class ViewModel: ObservableObject {
 
 class SearchManager: ObservableObject {
     @Published
-    var baseUrl = "http://66.42.44.167/"
+    var baseUrl = "http://10.237.130.45/"
     @Published
     var searchText = ""
     @Published

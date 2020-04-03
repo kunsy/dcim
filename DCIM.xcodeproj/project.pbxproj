@@ -28,6 +28,7 @@
 		5F55792E22BC809C00C79FDE /* EngineerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55792D22BC809C00C79FDE /* EngineerListView.swift */; };
 		5F623D38236C0C36005FBE57 /* KnowledgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F623D37236C0C36005FBE57 /* KnowledgeListView.swift */; };
 		5F623D3A236C0C4D005FBE57 /* KnowledgeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F623D39236C0C4D005FBE57 /* KnowledgeRow.swift */; };
+		5FD0A87824371AD80099C773 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD0A87724371AD80099C773 /* CategoryRow.swift */; };
 		5FE19FEC230FA6D3006F12EC /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE19FEB230FA6D3006F12EC /* PageViewController.swift */; };
 		5FFDD88022B91F1C00C2383A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */; };
 		5FFDD88222B91F1C00C2383A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FFDD88122B91F1C00C2383A /* SceneDelegate.swift */; };
@@ -59,6 +60,7 @@
 		5F55792D22BC809C00C79FDE /* EngineerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerListView.swift; sourceTree = "<group>"; };
 		5F623D37236C0C36005FBE57 /* KnowledgeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeListView.swift; sourceTree = "<group>"; };
 		5F623D39236C0C4D005FBE57 /* KnowledgeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeRow.swift; sourceTree = "<group>"; };
+		5FD0A87724371AD80099C773 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		5FE19FEB230FA6D3006F12EC /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		5FFDD87C22B91F1C00C2383A /* DCIM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCIM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FFDD87F22B91F1C00C2383A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				5F623D37236C0C36005FBE57 /* KnowledgeListView.swift */,
+				5FD0A87724371AD80099C773 /* CategoryRow.swift */,
 				5F623D39236C0C4D005FBE57 /* KnowledgeRow.swift */,
 			);
 			path = KnowledgeList;
@@ -282,6 +285,7 @@
 				5F0927F822BA817900CA26D3 /* EngineerRow.swift in Sources */,
 				5F125CD022EBEFBC00F6269E /* ScannerViewController.swift in Sources */,
 				5F23E7BF22D58A020014F761 /* ReportView.swift in Sources */,
+				5FD0A87824371AD80099C773 /* CategoryRow.swift in Sources */,
 				5F623D3A236C0C4D005FBE57 /* KnowledgeRow.swift in Sources */,
 				5F0927E822B9F9C700CA26D3 /* HomeView.swift in Sources */,
 				5FFDD88222B91F1C00C2383A /* SceneDelegate.swift in Sources */,
