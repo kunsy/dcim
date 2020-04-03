@@ -42,7 +42,9 @@ struct EquipmentRow : View {
 //                    Text("\(equipment.supporter ?? "" )")
 //                    }.font(.body)
 //            }
-            Text("\(equipment.name)").font(.headline).foregroundColor(.orange)
+            NavigationLink(destination: EquipmentRow(equipment: equipment)) {
+                Text("\(equipment.name)").font(.headline).foregroundColor(.orange)
+            }
             HStack {
                 Text("序列号：")
                 Spacer()
@@ -82,7 +84,9 @@ struct EquipmentRow : View {
                 Spacer()
                 Text("\(equipment.supporter ?? "" )")
                 }.font(.body)
-        }
+                Spacer()
+        }.padding()
+
     }
 }
 

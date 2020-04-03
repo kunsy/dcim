@@ -12,7 +12,7 @@ struct KnowledgeRow: View {
     var knowledge: Knowledge
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            Section(header: Text("\(knowledge.name)").font(.headline).foregroundColor(.orange)) {
+            Section(header: NavigationLink(destination: KnowledgeRow(knowledge: knowledge)) {Text("\(knowledge.name)").font(.headline).foregroundColor(.orange)}) {
                 HStack {
                     Text("处理过程：")
                     Spacer()
@@ -28,11 +28,13 @@ struct KnowledgeRow: View {
                     Spacer()
                     Text("\(knowledge.division ?? "" )")
                     }.font(.body)
+                Spacer()
 //                HStack {
 //                    Text("添加时间：")
 //                    Spacer()
 //                    Text("\(knowledge.add_time ?? "" )")
 //                    }.font(.body).lineLimit(nil)
+                
             }
 //            Text("\(event.abstract)").font(.subheadline).foregroundColor(.orange)
 

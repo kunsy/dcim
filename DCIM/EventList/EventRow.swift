@@ -12,7 +12,7 @@ struct EventRow : View {
     var event: Event
     var body: some View {
         VStack  {
-            Section(header: Text("\(event.abstract)").font(.headline).foregroundColor(.orange)) {
+            Section(header: NavigationLink(destination: EventRow(event: event)) {Text("\(event.abstract)").font(.headline).foregroundColor(.orange)}) {
                 HStack {
                     Text("发生日期：")
                     Spacer()

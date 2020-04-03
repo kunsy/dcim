@@ -13,7 +13,9 @@ struct EngineerRow : View {
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
-            Text("\(engineer.name)").font(.subheadline).foregroundColor(.orange)
+            NavigationLink(destination: EngineerRow(engineer: engineer)) {
+                Text("\(engineer.name)").font(.subheadline).foregroundColor(.orange)
+            }
             HStack {
                 Text("手机号：")
                 Spacer()
@@ -31,7 +33,8 @@ struct EngineerRow : View {
                 Spacer()
                 Text("\(engineer.supplierName!)")
                 }.font(.body)
-        }.font(.body)
+            Spacer()
+            }.font(.body).padding()
     }
 }
 
