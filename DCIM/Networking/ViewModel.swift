@@ -4,6 +4,8 @@ import Combine
 
 
 class ViewModel: ObservableObject {
+
+    var nets = ["http://10.237.130.45/", "http://202.182.114.239/"]
     @Published
     var baseUrl = "http://10.237.130.45/"
     @Published
