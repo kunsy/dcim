@@ -7,7 +7,7 @@ class ViewModel: ObservableObject {
 
     var nets = ["http://10.237.130.45/", "http://202.182.114.239/"]
     @Published
-    var baseUrl = "http://10.237.130.45/"
+    var baseUrl = "http://202.182.114.239/"
     @Published
     var user = User(id: UUID(), name: "", secret: "", accesstoken: "", refreshtoken: "")
     
@@ -230,7 +230,7 @@ class ViewModel: ObservableObject {
 
 class SearchManager: ObservableObject {
     @Published
-    var baseUrl = "http://10.237.130.45/"
+    var baseUrl = "http://202.182.114.239/"
     @Published
     var searchText = ""
     @Published

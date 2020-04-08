@@ -10,6 +10,20 @@ struct HomeView : View {
     @State private var showImage = true
     @EnvironmentObject var searchManager: SearchManager
     @EnvironmentObject var networkManager: ViewModel
+    
+    @State private var isShowingScanner = false
+    
+    func handleScan(result: Result<String, CodeScannerView.ScanError>) {
+        self.isShowingScanner = false
+        switch result {
+        case .success(let code):
+            print(code)
+            self.showImage = false
+            self.searchManager.search(query: code)
+       case .failure(let error):
+           print("Scanning failed")
+       }
+    }
     var body: some View {
  
         VStack {
@@ -29,7 +43,7 @@ struct HomeView : View {
                      self.showImage = false
                      self.searchManager.search(query: self.searchText)
                 }).padding([.leading, .trailing]).padding(.top).textFieldStyle(RoundedBorderTextFieldStyle())
-                    
+                
 //                Button("Go") {
 //                    self.showImage = false
 //                    self.searchManager.search(query: self.searchText)
@@ -63,8 +77,14 @@ struct HomeView : View {
             Spacer()
             
         }.navigationBarTitle(Text("DCIM"), displayMode: .inline).accentColor(Color.orange)
-            
-//            .navigationBarHidden(true)
+//        .navigationBarItems(trailing: NavigationLink(destination: qrSearchView()) {Image(systemName: "qrcode.viewfinder").font(.body)})
+            .navigationBarItems(trailing: Image(systemName: "qrcode.viewfinder").font(.body).onTapGesture {
+                self.isShowingScanner = true
+            })
+        .sheet(isPresented: $isShowingScanner) {
+            CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: self.handleScan)
+        }
+//        .navigationBarHidden(true)
         
     }
 }

@@ -13,7 +13,7 @@ struct SetUp: View {
     @EnvironmentObject var networkManager: ViewModel
     var servers = ["内网", "外网"]
 
-    @State var chosednet = 0
+    @State var chosednet = 1
     var body: some View {
         Form {
             Section (header: Text("Server: \(networkManager.baseUrl)")) {

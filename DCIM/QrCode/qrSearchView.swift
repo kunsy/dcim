@@ -13,7 +13,10 @@ struct qrSearchView: View {
     
     var body: some View {
 //        ColorController()
-        ScanController()
+//        ScanController()
+        CodeScannerView(codeTypes: [.qr]) { (result) in
+            print(result)
+        }
     }
 }
 

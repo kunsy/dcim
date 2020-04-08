@@ -25,6 +25,7 @@
 		5F23E7C122D58C380014F761 /* MoiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23E7C022D58C380014F761 /* MoiView.swift */; };
 		5F283A17230A8A7E00BBA3E8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F283A16230A8A7E00BBA3E8 /* SearchBar.swift */; };
 		5F40BCEF2322299F009AE1EC /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F40BCEE2322299F009AE1EC /* Login.swift */; };
+		5F53F681243DB9CD008DE3AE /* CodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F53F680243DB9CD008DE3AE /* CodeScannerView.swift */; };
 		5F55792E22BC809C00C79FDE /* EngineerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F55792D22BC809C00C79FDE /* EngineerListView.swift */; };
 		5F623D38236C0C36005FBE57 /* KnowledgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F623D37236C0C36005FBE57 /* KnowledgeListView.swift */; };
 		5F623D3A236C0C4D005FBE57 /* KnowledgeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F623D39236C0C4D005FBE57 /* KnowledgeRow.swift */; };
@@ -57,6 +58,7 @@
 		5F23E7C022D58C380014F761 /* MoiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoiView.swift; sourceTree = "<group>"; };
 		5F283A16230A8A7E00BBA3E8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5F40BCEE2322299F009AE1EC /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		5F53F680243DB9CD008DE3AE /* CodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScannerView.swift; sourceTree = "<group>"; };
 		5F55792D22BC809C00C79FDE /* EngineerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineerListView.swift; sourceTree = "<group>"; };
 		5F623D37236C0C36005FBE57 /* KnowledgeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeListView.swift; sourceTree = "<group>"; };
 		5F623D39236C0C4D005FBE57 /* KnowledgeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowledgeRow.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				5F125CCB22EBE7CC00F6269E /* qrSearchView.swift */,
 				5F125CCF22EBEFBC00F6269E /* ScannerViewController.swift */,
 				5FE19FEB230FA6D3006F12EC /* PageViewController.swift */,
+				5F53F680243DB9CD008DE3AE /* CodeScannerView.swift */,
 			);
 			path = QrCode;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				5F623D3A236C0C4D005FBE57 /* KnowledgeRow.swift in Sources */,
 				5F0927E822B9F9C700CA26D3 /* HomeView.swift in Sources */,
 				5FFDD88222B91F1C00C2383A /* SceneDelegate.swift in Sources */,
+				5F53F681243DB9CD008DE3AE /* CodeScannerView.swift in Sources */,
 				5F071E2622C09AAB00ED9195 /* EquipmentRow.swift in Sources */,
 				5F0927F422BA773200CA26D3 /* ViewModel.swift in Sources */,
 				5F40BCEF2322299F009AE1EC /* Login.swift in Sources */,
