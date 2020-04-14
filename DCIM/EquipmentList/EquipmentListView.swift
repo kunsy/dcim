@@ -9,18 +9,22 @@
 import SwiftUI
 
 struct EquipmentListView : View {
+    init()
+    {
+        UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: Double.leastNonzeroMagnitude))
+    }
     @EnvironmentObject var networkManager: ViewModel
     @State private var searchText = ""
     var body: some View {
         VStack {
+            SearchBar(text: $searchText, choice: "equipments").onAppear{
+                self.networkManager.search(search: "", in: "equipments")
+            }
             List {
-                SearchBar(text: $searchText, choice: "equipments").onAppear{
-                    self.networkManager.search(search: "", in: "equipments")
-                }
                 ForEach (self.networkManager.searchEquipmentResults, id: \.name) { equipment in
                     EquipmentRow(equipment: equipment)
                 }
-            }
+            }.id(UUID())
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("计算机设备"))
                 .navigationBarItems(trailing: Button(action: {

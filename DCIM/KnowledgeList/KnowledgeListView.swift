@@ -27,11 +27,10 @@ struct KnowledgeListView: View {
 //            }.pickerStyle(SegmentedPickerStyle()).tapAction {
 //                print("ok")
 //            }
+            SearchBar(text: $searchText, choice: "knowledge").onAppear{
+                self.networkManager.search(search: self.searchText, in: "knowledge")
+            }
             List {
-                SearchBar(text: $searchText, choice: "knowledge").onAppear{
-                    self.networkManager.search(search: self.searchText, in: "knowledge")
-                }
-
                 ForEach (categorys.keys.sorted(), id: \.self) { key in
                     CategoryRow(category: key, knowledges: self.categorys[key]!)
                 }

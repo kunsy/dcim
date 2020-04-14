@@ -13,22 +13,15 @@ struct SearchBar : View {
     var choice: String
     @EnvironmentObject var networkManager: ViewModel
     var body: some View {
-        ZStack {
-//            Color.orange
-            HStack {
-                TextField("search", text: $text, onEditingChanged: {_ in 
-                    self.networkManager.search(search: self.text, in: self.choice)
-                })
-                    .padding([.leading, .trailing], 8)
-                    .frame(height: 32)
-                    .background(Color.gray.opacity(0.5))
-                    .cornerRadius(8)
-                }
-//                  .padding([.leading, .trailing], 16)
-            }
-            .frame(height: 40)
+        VStack {
+            TextField("search", text: $text, onEditingChanged: {_ in
+                self.networkManager.search(search: self.text, in: self.choice)
+            })
+                .frame(height: 40)
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(8)
+        }.padding(.top, 8)
     }
-
 }
 
 #if DEBUG

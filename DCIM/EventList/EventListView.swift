@@ -13,14 +13,14 @@ struct EventListView : View {
     @State private var searchText = ""
     var body: some View {
         VStack {
+            SearchBar(text: $searchText, choice: "events").onAppear{
+                self.networkManager.search(search: self.searchText, in: "events")
+            }
             List {
-                SearchBar(text: $searchText, choice: "events").onAppear{
-                    self.networkManager.search(search: self.searchText, in: "events")
-                }
                 ForEach (self.networkManager.searchEventResults, id: \.abstract) { event in
                     EventRow(event: event)
                 }
-            }
+                }.id(UUID())
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("事件记录"))
                 .navigationBarItems(trailing: Button(action: {

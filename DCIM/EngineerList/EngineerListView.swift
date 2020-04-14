@@ -22,14 +22,15 @@ struct EngineerListView : View {
     }
     var body: some View {
         VStack {
+            SearchBar(text: $searchText, choice: "engineers").onAppear{
+                self.networkManager.search(search: self.searchText, in: "engineers")
+            }
             List {
-                SearchBar(text: $searchText, choice: "engineers").onAppear{
-                    self.networkManager.search(search: self.searchText, in: "engineers")
-                }
+
                 ForEach (suppliers.keys.sorted(), id: \.self) { key in
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }
-            }
+            }.id(UUID())
                 .listStyle(GroupedListStyle())
                 .navigationBarTitle(Text("工程师"))
                 .navigationBarItems(trailing: Button(action: {
