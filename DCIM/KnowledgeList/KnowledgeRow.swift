@@ -15,17 +15,17 @@ struct KnowledgeRow: View {
             Section(header: NavigationLink(destination: KnowledgeRow(knowledge: knowledge)) {Text("\(knowledge.name)").font(.headline).foregroundColor(.orange)}) {
                 HStack {
                     Text("处理过程：")
-                    Spacer()
+//                    Spacer()
                     Text("\(knowledge.dispose ?? "" )")
                     }.font(.body)
                 HStack {
-                    Text("备注：")
-                    Spacer()
+                    Text("备注：        ")
+//                    Spacer()
                     Text("\(knowledge.remark ?? "" )")
                     }.font(.body).lineLimit(nil)
                 HStack {
-                    Text("分组：")
-                    Spacer()
+                    Text("分组：        ")
+//                    Spacer()
                     Text("\(knowledge.division ?? "" )")
                     }.font(.body)
                 Spacer()

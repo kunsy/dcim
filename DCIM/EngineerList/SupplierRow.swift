@@ -20,7 +20,7 @@ struct SupplierRow : View {
 //                .alignmentGuide(.leading)
             ForEach (self.engineers, id: \.name) { engineer in
                 EngineerRow(engineer: engineer)
-            }.padding()
+            }
         }
 
     }

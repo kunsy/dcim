@@ -17,7 +17,7 @@ struct CategoryRow: View {
                 .font(.headline)
             ForEach (self.knowledges, id: \.name) { knowledge in
                 KnowledgeRow(knowledge: knowledge)
-            }.padding()
+            }
         }
     }
 }

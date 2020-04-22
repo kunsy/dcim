@@ -18,19 +18,19 @@ struct EngineerRow : View {
             }
             HStack {
                 Text("手机号：")
-                Spacer()
+//                Spacer()
                 Text("\(engineer.phone ?? "" )")
                 }.font(.body)
             
             HStack {
-                Text("身份证/门禁卡：")
-                Spacer()
+                Text("ID：         ")
+//                Spacer()
                 Text("\(engineer.identity ?? "" )")
                 }.font(.body)
             
             HStack {
                 Text("供应商：")
-                Spacer()
+//                Spacer()
                 Text("\(engineer.supplierName!)")
                 }.font(.body)
             Spacer()

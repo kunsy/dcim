@@ -23,9 +23,6 @@ struct EquipmentListView : View {
             List(self.networkManager.searchEquipmentResults, id: \.name) { (equipment) in
                 EquipmentRow(equipment: equipment)
             }
-//            ForEach (self.networkManager.searchEquipmentResults, id: \.name) { equipment in
-//                EquipmentRow(equipment: equipment)
-//            }
             .id(UUID())
             .listStyle(GroupedListStyle())
             .navigationBarTitle(Text("计算机设备"))

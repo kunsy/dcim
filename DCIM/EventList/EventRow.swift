@@ -11,36 +11,36 @@ import SwiftUI
 struct EventRow : View {
     var event: Event
     var body: some View {
-        VStack  {
+        VStack (alignment: .leading, spacing: 0) {
             Section(header: NavigationLink(destination: EventRow(event: event)) {Text("\(event.abstract)").font(.headline).foregroundColor(.orange)}) {
                 HStack {
                     Text("发生日期：")
-                    Spacer()
+//                    Spacer()
                     Text("\(event.date ?? "" )")
                     }.font(.body)
                 HStack {
                     Text("事件处理：")
-                    Spacer()
+//                    Spacer()
                     Text("\(event.dispose ?? "" )")
                     }.font(.body).lineLimit(nil)
                 HStack {
-                    Text("故障确认时间：")
-                    Spacer()
+                    Text("故障确认：")
+//                    Spacer()
                     Text("\(event.confirmTime ?? "" )")
                     }.font(.body)
                 HStack {
-                    Text("状态：")
-                    Spacer()
+                    Text("状态：        ")
+//                    Spacer()
                     Text("\(event.status ?? "" )")
                     }.font(.body)
                 HStack {
                     Text("故障原因：")
-                    Spacer()
+//                    Spacer()
                     Text("\(event.causes ?? "" )")
                     }.font(.body)
                 HStack {
-                    Text("备忘：")
-                    Spacer()
+                    Text("备忘：        ")
+//                    Spacer()
                     Text("\(event.remark ?? "" )")
                     }.font(.body).lineLimit(nil)
             }
