@@ -34,15 +34,15 @@ struct KnowledgeListView: View {
                 ForEach (categorys.keys.sorted(), id: \.self) { key in
                     CategoryRow(category: key, knowledges: self.categorys[key]!)
                 }
-            }
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle(Text("知识库"))
-                .navigationBarItems(trailing: Button(action: {
-                    print("Refresh Knowledge")
-                    self.networkManager.fetchKnowledges()
-                }, label: {
-                    Image(systemName: "arrow.2.circlepath").font(.body)
-                }))
+            }.id(UUID())
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text("知识库"))
+            .navigationBarItems(trailing: Button(action: {
+                print("Refresh Knowledge")
+                self.networkManager.fetchKnowledges()
+            }, label: {
+                Image(systemName: "arrow.2.circlepath").font(.body)
+            }))
         }
 
     }

@@ -14,9 +14,12 @@ struct SearchBar : View {
     @EnvironmentObject var networkManager: ViewModel
     var body: some View {
         VStack {
-            TextField("search", text: $text, onEditingChanged: {_ in
+            TextField("search", text: $text) {
                 self.networkManager.search(search: self.text, in: self.choice)
-            })
+            }
+//            TextField("search", text: $text, onEditingChanged: {_ in
+//                self.networkManager.search(search: self.text, in: self.choice)
+//            })
                 .frame(height: 40)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(8)

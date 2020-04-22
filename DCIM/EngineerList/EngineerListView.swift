@@ -26,19 +26,18 @@ struct EngineerListView : View {
                 self.networkManager.search(search: self.searchText, in: "engineers")
             }
             List {
-
                 ForEach (suppliers.keys.sorted(), id: \.self) { key in
                     SupplierRow(supplier: key, engineers: self.suppliers[key]!)
                 }
             }.id(UUID())
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle(Text("工程师"))
-                .navigationBarItems(trailing: Button(action: {
-                    print("Refresh engineers")
-                    self.networkManager.fetchEngineers()
-                }, label: {
-                    Image(systemName: "arrow.2.circlepath").font(.body)
-                }))
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text("工程师"))
+            .navigationBarItems(trailing: Button(action: {
+                print("Refresh engineers")
+                self.networkManager.fetchEngineers()
+            }, label: {
+                Image(systemName: "arrow.2.circlepath").font(.body)
+            }))
 
         }
 

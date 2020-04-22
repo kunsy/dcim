@@ -20,15 +20,15 @@ struct EventListView : View {
                 ForEach (self.networkManager.searchEventResults, id: \.abstract) { event in
                     EventRow(event: event)
                 }
-                }.id(UUID())
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle(Text("事件记录"))
-                .navigationBarItems(trailing: Button(action: {
-                    print("Refresh Events")
-                    self.networkManager.fetchEvents()
-                }, label: {
-                    Image(systemName: "arrow.2.circlepath").font(.body)
-                }))
+            }.id(UUID())
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text("事件记录"))
+            .navigationBarItems(trailing: Button(action: {
+                print("Refresh Events")
+                self.networkManager.fetchEvents()
+            }, label: {
+                Image(systemName: "arrow.2.circlepath").font(.body)
+            }))
         }
 
     }

@@ -20,19 +20,21 @@ struct EquipmentListView : View {
             SearchBar(text: $searchText, choice: "equipments").onAppear{
                 self.networkManager.search(search: "", in: "equipments")
             }
-            List {
-                ForEach (self.networkManager.searchEquipmentResults, id: \.name) { equipment in
-                    EquipmentRow(equipment: equipment)
-                }
-            }.id(UUID())
-                .listStyle(GroupedListStyle())
-                .navigationBarTitle(Text("计算机设备"))
-                .navigationBarItems(trailing: Button(action: {
-                    print("Refresh equipments")
-                    self.networkManager.fetchEquipments()
-                }, label: {
-                    Image(systemName: "arrow.2.circlepath").font(.body)
-                }))
+            List(self.networkManager.searchEquipmentResults, id: \.name) { (equipment) in
+                EquipmentRow(equipment: equipment)
+            }
+//            ForEach (self.networkManager.searchEquipmentResults, id: \.name) { equipment in
+//                EquipmentRow(equipment: equipment)
+//            }
+            .id(UUID())
+            .listStyle(GroupedListStyle())
+            .navigationBarTitle(Text("计算机设备"))
+            .navigationBarItems(trailing: Button(action: {
+                print("Refresh equipments")
+                self.networkManager.fetchEquipments()
+            }, label: {
+                Image(systemName: "arrow.2.circlepath").font(.body)
+            }))
         }
     }
 }
